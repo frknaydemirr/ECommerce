@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using ETicaret.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace ETicaret.WebUI.Controllers
 {
@@ -22,6 +22,12 @@ namespace ETicaret.WebUI.Controllers
         {
             return View();
         }
+
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

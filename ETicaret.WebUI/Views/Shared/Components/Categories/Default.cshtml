@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Category>
+
+@{
+
+foreach(var anaKategori in Model.Where(x=>x.IsActive && x.IsTopMenu && x.ParentId==0))
+{
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Home" asp-action="ContactUs">@anaKategori.Name</a>
+        </li>
+
+}
+}

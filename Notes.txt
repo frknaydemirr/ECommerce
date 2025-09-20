@@ -1,0 +1,27 @@
+﻿ViewComponent, Controller bağımsız, kendi içinde hem veri işleme (C# kodu) hem de görünüm
+(Razor view) mantığını taşıyabilen küçük, 
+yeniden kullanılabilir bir bileşendir.
+
+✅ Ne işe yarar?
+
+Yeniden kullanılabilirlik sağlar
+
+Mesela: “Son Haberler”, “Sepet Özeti”, “Kategoriler Menüsü” gibi sayfanın birçok yerinde 
+kullanılan parçaları tek bir yerde yazar ve her yerde çağırabilirsiniz.
+
+Controller bağımsızdır
+
+Normal PartialView’ler genelde Controller üzerinden veri alır. Ama ViewComponent kendi Invoke 
+metodu ile istediği veriyi kendisi alır.
+
+Daha test edilebilir ve modülerdir
+
+Çünkü hem C# kodu hem de View dosyası birlikte gelir. Yani küçük bir mini-MVC gibidir.
+
+Asenkron çalışabilir
+
+InvokeAsync metodu ile async/await kullanabilirsiniz. Bu, performans açısından faydalıdır.
+
+View içinde çağırılır
+
+@Component.InvokeAsync("LatestNews")
