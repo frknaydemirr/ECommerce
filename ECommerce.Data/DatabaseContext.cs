@@ -1,5 +1,7 @@
 ﻿using ECommerce.Core.Entities;
+using ECommerce.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace ECommerce.Data
 {
@@ -23,6 +25,25 @@ namespace ECommerce.Data
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Slider> Sliders { get; set; }
+
+
+        //database bağlantı ayarı: 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(
+                @"Server=localhost;Database=ECommerceDb;Trusted_Connection=True;
+                TrustServerCertificate=True;");
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            //modelBuilder.ApplyConfiguration(new BrandConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            base.OnModelCreating(modelBuilder);
+        }
 
 
     }

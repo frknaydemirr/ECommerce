@@ -47,11 +47,11 @@ namespace ECommerce.Data.Configurations
                 isActive = true,
                 Name = "Test",
                 Password = "123456*",
-                SurName="User"
+                SurName = "User",
+                CreateDate = new DateTime(2025, 9, 19, 0, 0, 0, DateTimeKind.Unspecified), // statik tarih
+                UserGuid = Guid.Parse("5f727bf4-0540-4b5b-85be-8ae9f3ce1f33") // statik GUID
+            });
 
-
-            }
-            );
         }
     }
 }

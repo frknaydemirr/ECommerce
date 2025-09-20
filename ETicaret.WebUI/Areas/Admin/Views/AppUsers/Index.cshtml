@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ECommerce.Core.Entities.AppUser>
+
+@{
+    ViewData["Title"] = "Kullanıcı Listesi";
+}
+
+
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">
+        <i class="fa-solid fa-plus "></i>
+        Yeni Ekle</a>
+</p>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SurName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.isActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isAdmin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SurName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.isActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isAdmin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+           
+            <td>
+                <a asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    Düzenle</a> 
+                    <a asp-action="Details" class="btn btn-sm btn-info" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Detay</a> 
+                    <a asp-action="Delete" class="btn btn-sm btn-danger" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-trash"></i>
+                        Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,3 +1,5 @@
+using ECommerce.Data;
+
 namespace ETicaret.WebUI
 {
     public class Program
@@ -8,6 +10,11 @@ namespace ETicaret.WebUI
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            //database iþlemleri için:
+
+            builder.Services.AddDbContext<DatabaseContext>();
+
 
             var app = builder.Build();
 
@@ -25,6 +32,12 @@ namespace ETicaret.WebUI
             app.UseRouting();
 
             app.UseAuthorization();
+
+           app.MapControllerRoute(
+           name: "admin",
+           pattern: "{area:exists}/{controller=Main}/{action=Index}/{id?}"
+         );
+
 
             app.MapControllerRoute(
                 name: "default",
