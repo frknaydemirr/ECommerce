@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Brand>
+﻿@model IEnumerable<ECommerce.Core.Entities.Slider>
 
 @{
-    ViewData["Title"] = "Markalar";
+    ViewData["Title"] = "Slider ";
 }
 
 
@@ -16,20 +16,14 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
-
+            
             <th>
-                @Html.DisplayNameFor(model => model.Logo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
+                @Html.DisplayNameFor(model => model.Image)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
+                @Html.DisplayNameFor(model => model.Link)
             </th>
             <th></th>
         </tr>
@@ -38,38 +32,31 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
 
                 <td>
-                    @if (!string.IsNullOrWhiteSpace(item.Logo))
-                    {
-                        <img src="~/img/@item.Logo" alt="@item.Name" height="30" />
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
-                </td>
+                    <a href="~/img/Slider/@item.Image">
+                        <img src="~/img/Slider/@item.Image" alt="" height="50" />
+                    </a>
+                       
 
+                </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrderNo)
+                @Html.DisplayFor(modelItem => item.Link)
             </td>
-
-                <td>
-                    @item.CreateDate.ToLongDateString()
-                </td>
                 <td>
                     <a asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.Id">
                         <i class="fa-solid fa-pen-to-square"></i>
-                        Düzenle
+
                     </a>
                     <a asp-action="Details" class="btn btn-sm btn-info" asp-route-id="@item.Id">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        Detay
+
                     </a>
                     <a asp-action="Delete" class="btn btn-sm btn-danger" asp-route-id="@item.Id">
                         <i class="fa-solid fa-trash"></i>
-                        Sil
+
                     </a>
                 </td>
         </tr>

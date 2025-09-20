@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Ürün Ekle";
+}
+
+<style>
+    td.fixed-height:{max-width:180px; height:20px ; overflow:hidden; text-overflow: ellipsis;
+    white-space:nowrap}
+
+
+</style>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">
+        <i class="fa-solid fa-plus "></i>
+        Yeni Ekle
+    </a>
+</p>
+<table class="table table-hover table-striped">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsHome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderNo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="fixed-height">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                    @item.CreateDate.ToLongDateString()
+            </td>
+            <td>
+                    @if (!string.IsNullOrWhiteSpace(item.Image))
+                    {
+                        <img src="~/img/Products/@item.Image" alt="@item.Name" height="100" />
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsHome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNo)
+            </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        
+                    </a>
+                    <a asp-action="Details" class="btn btn-sm btn-info" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        
+                    </a>
+                    <a asp-action="Delete" class="btn btn-sm btn-danger" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-trash"></i>
+                        
+                    </a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

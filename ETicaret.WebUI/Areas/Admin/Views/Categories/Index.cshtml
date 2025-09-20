@@ -1,10 +1,8 @@
-﻿@model IEnumerable<Brand>
+﻿@model IEnumerable<Category>
 
 @{
-    ViewData["Title"] = "Markalar";
+    ViewData["Title"] = "Kategoriler";
 }
-
-
 
 <p>
     <a asp-action="Create" class="btn btn-outline-primary">
@@ -16,20 +14,28 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-
             <th>
-                @Html.DisplayNameFor(model => model.Logo)
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderNo)
+                @Html.DisplayNameFor(model => model.IsTopMenu)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
+                @Html.DisplayNameFor(model => model.ParentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderNo)
             </th>
             <th></th>
         </tr>
@@ -37,27 +43,33 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-
+            <td>
+                @item.CreateDate.ToLongDateString()
+            </td>
                 <td>
-                    @if (!string.IsNullOrWhiteSpace(item.Logo))
+                    @if (!string.IsNullOrWhiteSpace(item.Image))
                     {
-                        <img src="~/img/@item.Logo" alt="@item.Name" height="30" />
+                        <img src="~/img/Categories/@item.Image" alt="@item.Name" height="30" />
                     }
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
-                </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsTopMenu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OrderNo)
             </td>
-
-                <td>
-                    @item.CreateDate.ToLongDateString()
-                </td>
                 <td>
                     <a asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.Id">
                         <i class="fa-solid fa-pen-to-square"></i>

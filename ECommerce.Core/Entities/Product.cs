@@ -20,7 +20,7 @@ namespace ECommerce.Core.Entities
         public int Stock { get; set; }
         [Display(Name = "Aktif mi?")]
         public bool IsActive { get; set; }
-        [Display(Name = "Anasayfa da Göster ? ")]
+        [Display(Name = "Anasayfa  ? ")]
         public bool IsHome { get; set; }
 
         [Display(Name = "Kategori")]
@@ -36,7 +36,7 @@ namespace ECommerce.Core.Entities
         public int? OrderNo { get; set; }
 
         [Display(Name = "Kayıt Tarihi"), ScaffoldColumn(false)]
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.Now;
 
     }
 }

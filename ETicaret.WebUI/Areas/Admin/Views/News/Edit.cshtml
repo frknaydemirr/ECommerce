@@ -1,9 +1,8 @@
-﻿@model Brand
+﻿@model ECommerce.Core.Entities.News
 
 @{
-    ViewData["Title"] = "Marka Düzenle";
+    ViewData["Title"] = "Duyuru Düzenle";
 }
-
 
 <hr />
 <div class="row">
@@ -12,7 +11,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="CreateDate" />
-             <input type="hidden" asp-for="Logo" /> 
+            <input type="hidden" asp-for="Image" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -24,9 +23,19 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Logo" class="control-label"></label>
-                <input asp-for="Logo" class="form-control"  type="file"/>
-                <span asp-validation-for="Logo" class="text-danger"></span>
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" type="file" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+                @if (Model.Image != null && !string.IsNullOrWhiteSpace(Model.Image))
+                {
+                    <img src="/Img/@Model.Image" height="75" />
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            @Html.CheckBox("cbResmiSil") Resmi Sil
+                        </label>
+                    </div>
+
+                }
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -34,22 +43,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="OrderNo" class="control-label"></label>
-                <input asp-for="OrderNo" class="form-control" />
-                <span asp-validation-for="OrderNo" class="text-danger"></span>
-                @if (Model.Logo != null &&  !string.IsNullOrWhiteSpace(Model.Logo))
-                {
-                    <img src="/Img/@Model.Logo" height="75" />
-                    <div class="form-group form-check">
-                        <label class="form-check-label">
-                           @Html.CheckBox("cbResmiSil") Logoyu Sil
-                        </label>
-                    </div>
-
-                }
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Kaydet" class="btn btn-primary mt-2" />
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </form>
     </div>

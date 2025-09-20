@@ -7,22 +7,22 @@ using Microsoft.EntityFrameworkCore;
 namespace ETicaret.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class BrandsController : Controller
+    public class NewsController : Controller
     {
         private readonly DatabaseContext _context;
 
-        public BrandsController(DatabaseContext context)
+        public NewsController(DatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: Admin/Brands
+        // GET: Admin/News
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Brands.ToListAsync());
+            return View(await _context.News.ToListAsync());
         }
 
-        // GET: Admin/Brands/Details/5
+        // GET: Admin/News/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -30,39 +30,40 @@ namespace ETicaret.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var brand = await _context.Brands
+            var news = await _context.News
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (brand == null)
+            if (news == null)
             {
                 return NotFound();
             }
 
-            return View(brand);
+            return View(news);
         }
 
-        // GET: Admin/Brands/Create
+        // GET: Admin/News/Create
         public IActionResult Create()
         {
             return View();
         }
 
-    
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Brand brand , IFormFile? Logo)
+        [ActionName("Create")]
+        public async Task<IActionResult> CreatePost(News news, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
-
-                brand.Logo = await FileHelper.FileLoaderAsync(Logo);
-                _context.Add(brand);
+                news.Image = await FileHelper.FileLoaderAsync(Image);
+                _context.Add(news);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(brand);
+            return View(news);
         }
 
-        // GET: Admin/Brands/Edit/5
+
+        // GET: Admin/News/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -70,21 +71,20 @@ namespace ETicaret.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var brand = await _context.Brands.FindAsync(id);
-            if (brand == null)
+            var news = await _context.News.FindAsync(id);
+            if (news == null)
             {
                 return NotFound();
             }
-            return View(brand);
+            return View(news);
         }
 
+   
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,  Brand brand, IFormFile? Logo, bool cbResmiSil = false)
+        public async Task<IActionResult> Edit(int id,  News news , IFormFile? Image , bool cbResmiSil = false)
         {
-
-          
-            if (id != brand.Id)
+            if (id != news.Id)
             {
                 return NotFound();
             }
@@ -94,15 +94,15 @@ namespace ETicaret.WebUI.Areas.Admin.Controllers
                 try
                 {
                     if (cbResmiSil)
-                        brand.Logo = string.Empty;
-                    if(Logo is not null)
-                        brand.Logo = await FileHelper.FileLoaderAsync(Logo);
-                    _context.Update(brand);
+                        news.Image = string.Empty;
+                    if (news is not null)
+                        news.Image = await FileHelper.FileLoaderAsync(Image, "/Img/");
+                    _context.Update(news);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BrandExists(brand.Id))
+                    if (!NewsExists(news.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace ETicaret.WebUI.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(brand);
+            return View(news);
         }
 
-        // GET: Admin/Brands/Delete/5
+        // GET: Admin/News/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,41 +124,40 @@ namespace ETicaret.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var brand = await _context.Brands
+            var news = await _context.News
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (brand == null)
+            if (news == null)
             {
                 return NotFound();
             }
 
-            return View(brand);
+            return View(news);
         }
 
-        // POST: Admin/Brands/Delete/5
+       
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var brand = await _context.Brands.FindAsync(id);
-            if (brand != null)
+            var news = await _context.News.FindAsync(id);
+            if (news != null)
             {
-
-                if (!string.IsNullOrEmpty(brand.Logo))
+                if (!string.IsNullOrEmpty(news.Image))
                 {
-                    FileHelper.FileRemover(brand.Logo);
+                    FileHelper.FileRemover(news.Image, "/Img/");
                 }
 
 
-                _context.Brands.Remove(brand);
+                _context.News.Remove(news);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BrandExists(int id)
+        private bool NewsExists(int id)
         {
-            return _context.Brands.Any(e => e.Id == id);
+            return _context.News.Any(e => e.Id == id);
         }
     }
 }
