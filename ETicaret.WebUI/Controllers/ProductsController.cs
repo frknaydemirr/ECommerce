@@ -1,4 +1,5 @@
 ﻿using ECommerce.Data;
+using ETicaret.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,9 +17,11 @@ namespace ETicaret.WebUI.Controllers
         }
 
         // GET: Admin/Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string q  = ""  )
         {
-            var databaseContext = _context.Products.Where(p=>p.IsActive).Include(p => p.Brand).Include(p => p.Category);
+            var databaseContext = _context.Products.Where(p=>p.IsActive &&
+            p.Name.Contains(q) || p.Description.Contains(q) )
+                .Include(p => p.Brand).Include(p => p.Category);
             return View(await databaseContext.ToListAsync());
         }
 
@@ -40,8 +43,14 @@ namespace ETicaret.WebUI.Controllers
             {
                 return NotFound();
             }
+            var model = new ProductDetailViewModel()
+            {
+                Product = product,
+                RelatedProducts = _context.Products.Where(P => P.IsActive && 
+                P.CategoryId==product.CategoryId && P.Id !=product.Id)
 
-            return View(product);
+            };
+            return View(model);
         }
 
 

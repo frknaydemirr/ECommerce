@@ -4,7 +4,6 @@
     ViewData["Title"] = "İletişim Formları";
 }
 
-<h1>Index</h1>
 
 
 <table class="table table-hover table-striped">
@@ -46,12 +45,20 @@
             <td>
                     @item.CreateDate.ToLongDateString()
             </td>
-            <td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        
+                    </a>
+                    <a asp-action="Details" class="btn btn-sm btn-info" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        
+                    </a>
                     <a asp-action="Delete" class="btn btn-sm btn-danger" asp-route-id="@item.Id">
                         <i class="fa-solid fa-trash"></i>
-                        Sil
+                        
                     </a>
-            </td>
+                </td>
         </tr>
 }
     </tbody>

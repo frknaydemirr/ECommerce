@@ -25,3 +25,139 @@ InvokeAsync metodu ile async/await kullanabilirsiniz. Bu, performans açısında
 View içinde çağırılır
 
 @Component.InvokeAsync("LatestNews")
+
+Generic Repository Pattern:
+Generic Repository Pattern, yazılımda data access (veri erişim) katmanını soyutlamak
+için kullanılan bir tasarım desenidir.
+Amacı şudur:
+
+Her entity için ayrı ayrı repository yazmak yerine,
+
+Ortak (generic) bir repository oluşturup tekrar eden 
+CRUD (Create, Read, Update, Delete) işlemlerini tek noktadan yönetmek.
+public class ProductRepository
+{
+    public void Add(Product product) { ... }
+    public void Update(Product product) { ... }
+    public void Delete(Product product) { ... }
+    public Product GetById(int id) { ... }
+    public IEnumerable<Product> GetAll() { ... }
+}
+
+🛠 Generic Repository
+
+Bunun yerine generic bir interface tanımlarsın:
+
+public interface IGenericRepository<T> where T : class
+{
+    IEnumerable<T> GetAll();
+    T GetById(int id);
+    void Add(T entity);
+    void Update(T entity);
+    void Delete(T entity);
+}
+Ve bir generic implementation:
+public class GenericRepository<T> : IGenericRepository<T> where T : class
+{
+    private readonly DbContext _context;
+    private readonly DbSet<T> _dbSet;
+
+    public GenericRepository(DbContext context)
+    {
+        _context = context;
+        _dbSet = _context.Set<T>();
+    }
+
+    public IEnumerable<T> GetAll()
+    {
+        return _dbSet.ToList();
+    }
+
+    public T GetById(int id)
+    {
+        return _dbSet.Find(id);
+    }
+
+    public void Add(T entity)
+    {
+        _dbSet.Add(entity);
+    }
+
+    public void Update(T entity)
+    {
+        _dbSet.Update(entity);
+    }
+
+    public void Delete(T entity)
+    {
+        _dbSet.Remove(entity);
+    }
+}
+Artık ProductRepository, CategoryRepository yazmana gerek yok:
+-> artık her bir data için ayrı ayrı repository yazmaya gerek yok:
+var productRepo = new GenericRepository<Product>(dbContext);
+var allProducts = productRepo.GetAll();
+
+var categoryRepo = new GenericRepository<Category>(dbContext);
+var categories = categoryRepo.GetAll();
+Kısaca:
+Generic Repository Pattern = Tekrarlayan CRUD kodlarını tek bir generic yapı ile çözmek.
+🎯 Avantajları
+
+Kod tekrarını azaltır.
+
+CRUD işlemleri tek yerde toplanır.
+
+Tüm entity’ler için aynı mantığı uygular.
+
+Test edilebilirliği artırır.
+
+Code Review (kod inceleme), yazılım geliştirme sürecinde bir geliştiricinin yazdığı kodun,
+başka geliştiriciler tarafından gözden geçirilmesi sürecidir.
+
+Amaç sadece “hata bulmak” değil, aynı zamanda:
+
+Kodun kalitesini artırmak
+
+Standartlara uygunluğu sağlamak
+
+Bakımı kolay ve okunabilir hale getirmek
+
+Takım içinde bilgi paylaşımı yapmak
+
+Potansiyel bug’ları erken yakalamak
+
+🔎 Code Review Süreci Nasıl İşler?
+
+Bir geliştirici yeni özellik ya da düzeltme için kod yazar.
+
+Kod, genellikle Pull Request (PR) ya da Merge Request (MR) ile ana branch’e 
+eklenmek üzere açılır.
+
+Başka takım arkadaşları kodu inceler:
+
+Kod okunabilir mi?
+
+Gereksiz karmaşıklık var mı?
+
+Performans sorunları olabilir mi?
+
+Güvenlik açıkları var mı?
+
+Proje standartlarına uygun mu?
+
+Gerekirse yorumlar yapılır, düzeltmeler istenir.
+
+Son onaydan sonra kod merge edilir.
+
+🎯 Code Review’un Faydaları
+
+Hata sayısını azaltır (özellikle production’a çıkmadan önce).
+
+Kodun okunabilirliğini artırır.
+
+Takım içinde bilgi paylaşımı sağlar (junior → senior öğrenir).
+
+Best practice yayılımına yardımcı olur.
+
+Tek kişinin yazdığı kod yerine takımın ortak sorumluluğunda olur.
