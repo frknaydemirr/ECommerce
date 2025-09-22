@@ -4,9 +4,6 @@
 }
 <h1>Giriş</h1>
 <style>
-
-
-
     .form-signin {
         width: 100%;
         max-width: 330px;
@@ -14,28 +11,26 @@
         margin: auto;
     }
 
-        .form-signin .checkbox {
-            font-weight: 400;
-        }
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
 
-        .form-signin .form-floating:focus-within {
-            z-index: 2;
-        }
+    .form-signin .form-floating:focus-within {
+        z-index: 2;
+    }
 
-        .form-signin input[type="email"] {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
 
-        .form-signin input[type="password"] {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
 </style>
-
 
 <main class="form-signin w-100 m-auto shadow rounded my-5">
     <form asp-action="SignIn">
@@ -59,7 +54,11 @@
                 Beni Hatırla
             </label>
         </div>
-        <button class="btn btn-primary w-100 py-2" type="submit">Giriş</button>
-      
+        <input type="hidden" asp-for="ReturnUrl" value="@Context.Request.Query["ReturnUrl"]"/>
+        @* en son kullanıcı nerede kaldırysa oraya yönlendiriyor *@
+
+        <button type="submit" class="btn btn-primary w-100 py-2">
+            Giriş
+        </button>
     </form>
 </main>

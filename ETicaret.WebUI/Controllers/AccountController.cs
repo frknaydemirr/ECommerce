@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims; //-> login
+using System.Security.Claims;
+using System.Threading.Tasks; //-> login
 
 namespace ETicaret.WebUI.Controllers
 {
@@ -37,7 +38,8 @@ namespace ETicaret.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                try
+                {
                     var account = await _context.AppUsers.FirstOrDefaultAsync(x =>
                         x.Email == loginViewModel.Email &&
                         x.Password == loginViewModel.Password &&
@@ -62,10 +64,12 @@ namespace ETicaret.WebUI.Controllers
                         var userPrincipal = new ClaimsPrincipal(userIdentity);
 
                         await HttpContext.SignInAsync(userPrincipal);
-                        return RedirectToAction("Index", "Home");
+                        return Redirect(string.IsNullOrEmpty(loginViewModel.ReturnUrl) ?  "/" :
+                            loginViewModel.ReturnUrl
+                            );
                     }
-                try
-                {
+
+
                 }
                 catch (Exception)
                 {
@@ -96,5 +100,13 @@ namespace ETicaret.WebUI.Controllers
             }
             return View(appUser);
         }
+
+
+        public async Task<IActionResult> SignOutAsync()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("SignIn");
+        }
+
     }
 }

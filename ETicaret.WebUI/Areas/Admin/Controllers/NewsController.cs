@@ -1,12 +1,14 @@
 ﻿using ECommerce.Core.Entities;
 using ECommerce.Data;
 using ETicaret.WebUI.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ETicaret.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Policy = "AdminPolicy")]
     public class NewsController : Controller
     {
         private readonly DatabaseContext _context;

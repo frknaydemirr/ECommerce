@@ -23,19 +23,39 @@
                         <a class="nav-link text-dark" asp-controller="Home" asp-action="ContactUs">İletişim</a>
                     </li>
                 </ul>
-                        
+                @* kullanıcı oturum açmış mı *@
+                        @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <div class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Hesabım
+                        </a>
 
-                <div class="dropdown">
-                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Giriş Yap
-                    </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/Account/">Kullanıcı Bilgilerim</a></li>
+                            <li><a class="dropdown-item" href="/Account/">Siparişlerim</a></li>
+                            <li><a class="dropdown-item" href="/Account/">Değerlendirmelerim</a></li>
+                            <li><a class="dropdown-item" href="/Account/SignOut">Oturumu Kapat</a></li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Giriş Yap
+                        </a>
 
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/Account/SignIn">Giriş</a></li>
-                        <li><a class="dropdown-item" href="/Account/SignUp">Üye Ol</a></li>
-                      
-                    </ul>
-                </div>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/Account/SignIn">Giriş</a></li>
+                            <li><a class="dropdown-item" href="/Account/SignUp">Üye Ol</a></li>
+
+                        </ul>
+                    </div>
+
+                }
+
+
                         </div>
                     </div>
                     </nav>

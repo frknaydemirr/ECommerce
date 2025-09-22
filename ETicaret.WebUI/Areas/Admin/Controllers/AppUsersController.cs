@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ECommerce.Core.Entities;
+using ECommerce.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ECommerce.Core.Entities;
-using ECommerce.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ETicaret.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Policy ="AdminPolicy")]
     public class AppUsersController : Controller
     {
         private readonly DatabaseContext _context;
