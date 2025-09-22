@@ -24,7 +24,22 @@ namespace ETicaret.WebUI.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            return View();
+            AppUser user= _context.AppUsers.FirstOrDefault(x=>x.UserGuid.ToString()== HttpContext.User
+            .FindFirst("UserGuid").Value);
+            if(user is null)
+            {
+                return NotFound();
+            }
+            var model= new UserEditViewModel()
+            {
+                Id = user.Id,
+                Name = user.Name,
+                SurName = user.SurName,
+                Email = user.Email,
+                Phone = user.Phone,
+                Password = user.Password
+            };
+            return View(model);
         }
 
 
@@ -106,6 +121,50 @@ namespace ETicaret.WebUI.Controllers
         {
             await HttpContext.SignOutAsync();
             return RedirectToAction("SignIn");
+        }
+
+        [HttpPost,Authorize]
+        public IActionResult Index(UserEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+           AppUser user = _context.AppUsers.FirstOrDefault(x => x.UserGuid.ToString() == HttpContext.User
+          .FindFirst("UserGuid").Value);
+                    if( user is not null)
+                    {
+                        user.SurName = model.SurName;
+                        user.Phone = model.Phone;
+                        user.Name = model.Name;
+                        user.Password = model.Password;
+                        user.Email = model.Email;
+                        _context.AppUsers.Update(user);
+                        var sonuc= _context.SaveChanges();
+                        if (sonuc > 0)
+                        {
+                            TempData["Message"] = @"
+<div class='alert alert-success alert-dismissible fade show' role='alert'>
+    <strong>Kayıt Bilgileriniz Güncellenmiştir!</strong> 
+    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>";
+
+                            
+
+
+                            return RedirectToAction("Index");
+                        }
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                    ModelState.AddModelError("", "Hata oluştu!");
+                }
+            }
+
+            return View();
         }
 
     }

@@ -17,17 +17,28 @@ namespace ETicaret.WebUI
 
             builder.Services.AddDbContext<DatabaseContext>();
 
+            //Session iþlemleri için: -> Servis olarak ekledik:
+            builder.Services.AddSession(options =>
+            {
+                options.Cookie.Name = "ETicaret.Session"; //çerez ismi
+                options.Cookie.HttpOnly = true; //sadece http isteklerinde geçerli
+                options.Cookie.IsEssential = true; //çerez zorunlu mu -> KALICI ÇEREZ
+                options.IdleTimeout = TimeSpan.FromDays(1); //çerezin geçerlilik süresi
+                options.IOTimeout = TimeSpan.FromMinutes(10); //çerezin geçerlilik süresi
+            });
+
+
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
-                AddCookie(x =>
-                {
-                    x.LoginPath = "/Account/SignIn";
-                    x.AccessDeniedPath = "/AccessDenied";   //kullanýcýnýn yetkisi olmadýðýnda nereye yönlendirilecek
-                    x.Cookie.Name = "Account"; //çerez ismi
-                    x.Cookie.MaxAge = TimeSpan.FromDays(7); //çerezin geçerlilik süresi
-                    x.Cookie.IsEssential = true; //çerez zorunlu mu -> KALICI ÇEREZ
+            AddCookie(x =>
+            {
+                x.LoginPath = "/Account/SignIn";
+                x.AccessDeniedPath = "/AccessDenied";   //kullanýcýnýn yetkisi olmadýðýnda nereye yönlendirilecek
+                x.Cookie.Name = "Account"; //çerez ismi
+                x.Cookie.MaxAge = TimeSpan.FromDays(7); //çerezin geçerlilik süresi
+                x.Cookie.IsEssential = true; //çerez zorunlu mu -> KALICI ÇEREZ
+            });
 
 
-                });
             builder.Services.AddAuthorization(x =>
             {
                 x.AddPolicy("AdminPolicy", policy => policy.RequireClaim(ClaimTypes.Role,"Admin"));
@@ -36,7 +47,7 @@ namespace ETicaret.WebUI
 
             });
 
-        var app = builder.Build();
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -51,14 +62,16 @@ namespace ETicaret.WebUI
 
             app.UseRouting();
 
+            app.UseSession(); //sessin kullanma:
+
+
             app.UseAuthentication(); // önce oturum açma iþlemi yapýlacak
 
             app.UseAuthorization(); //sonra yetkilendirme iþlemi yapýlacak
 
             app.MapControllerRoute(
            name: "admin",
-           pattern: "{area:exists}/{controller=Main}/{action=Index}/{id?}"
-         );
+           pattern: "{area:exists}/{controller=Main}/{action=Index}/{id?}");
 
 
             app.MapControllerRoute(

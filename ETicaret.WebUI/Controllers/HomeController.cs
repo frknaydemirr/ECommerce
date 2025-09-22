@@ -20,9 +20,7 @@ namespace ETicaret.WebUI.Controllers
 
         //datayý anasayfaya gönderdik!
         public async Task<IActionResult> Index()
-        {
-
-
+        {  
             var model = new HomePageViewModel()
             {
                 Sliders= await _context.Sliders.ToListAsync(),

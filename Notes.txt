@@ -161,3 +161,66 @@ Takım içinde bilgi paylaşımı sağlar (junior → senior öğrenir).
 Best practice yayılımına yardımcı olur.
 
 Tek kişinin yazdığı kod yerine takımın ortak sorumluluğunda olur.
+
+
+Sessions Yapısı:
+1. Session (Oturum) Nedir?
+
+Session, bir kullanıcının web sitesiyle olan etkileşimi boyunca sunucu tarafında tutulan
+geçici veriler anlamına gelir.
+
+Örneğin; bir kullanıcı siteye giriş yaptı → bu bilgiyi her request’te tekrar
+sorgulamamak için session’da saklarsın.
+
+Tarayıcı ile sunucu arasındaki köprü ise cookie’dir. Session ID cookie içine 
+yazılır, kullanıcı her istek yaptığında
+bu ID gönderilir, sunucu da doğru session verilerini bulur.
+2. Neden Kullanırız?
+
+Kullanıcıya özel veri saklamak için:
+
+Giriş yapan kullanıcının bilgileri
+
+Sepete eklenen ürünler
+
+Dil/tema tercihleri
+
+Stateless HTTP’yi stateful hale getirmek için:
+HTTP normalde "stateless"tir yani her istek bağımsızdır.
+Session sayesinde “bu istek aynı kullanıcıya ait” diyebilirsin.
+👉 Normalde session içine sadece string veya byte[] kaydedebilirsin.
+Ama senin yazdığın SetJson ve GetJson metotları sayesinde herhangi 
+bir nesneyi JSON’a çevirip saklayabiliyorsun.
+🔑 1. Kullanıcının oturuma otomatik girmesi
+
+Kullanıcı giriş yaptıysa, genellikle Authentication Cookie (kimlik doğrulama çerezi) oluşturulur.
+
+Bu cookie’de kullanıcıya ait token / ticket saklanır.
+
+Tarayıcıyı kapatıp açtığında, cookie hâlâ geçerliyse → kullanıcı tekrar giriş yapmak zorunda kalmaz.
+
+ASP.NET Core’da bu iş genelde Identity / Authentication middleware tarafından yapılır (senin Session değil).
+
+👉 Yani “kullanıcının oturuma otomatik girmesi” → cookie sayesinde olur.
+
+🛒 2. Sepetteki ürünlerin kalması
+
+Burada iki yaklaşım var:
+
+a) Session ile tutarsan
+
+Senin yazdığın SetJson / GetJson metotlarıyla session’da ürünleri saklarsın.
+
+Ama session sunucu tarafında saklanır ve session cookie’si (SessionId) tarayıcı kapanınca çoğu zaman silinir.
+
+Dolayısıyla tarayıcı kapanıp açıldığında sepet boş gelebilir (IdleTimeout dolmadan bile olabilir).
+
+b) Cookie ile tutarsan
+
+Ürünleri JSON olarak cookie’ye yazabilirsin.
+
+Cookie’nin expires süresi ne kadarsa (ör. 7 gün), tarayıcı kapansa da ürünler durur.
+
+Kullanıcı siteye tekrar girdiğinde → cookie okunur → sepete doldurulur.
+
+👉 Yani “sepette ürünlerin kalması” da cookie ile yapılır (veya DB’de kullanıcıya bağlı sepet kaydı tutarak).
