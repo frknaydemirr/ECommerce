@@ -1,4 +1,5 @@
-﻿using ECommerce.Data;
+﻿using ECommerce.Core.Entities;
+using ECommerce.Service.Abstract;
 using ETicaret.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,20 +10,20 @@ namespace ETicaret.WebUI.Controllers
     {
 
 
-        private readonly DatabaseContext _context;
+        private readonly IService<Product> _service;
 
-        public ProductsController(DatabaseContext context)
+        public ProductsController(IService<Product> service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: Admin/Products
         public async Task<IActionResult> Index(string q  = ""  )
         {
-            var databaseContext = _context.Products.Where(p=>p.IsActive &&
-            p.Name.Contains(q) || p.Description.Contains(q) )
-                .Include(p => p.Brand).Include(p => p.Category);
-            return View(await databaseContext.ToListAsync());
+            var databaseContext = _service.GetAllAsync(p => p.IsActive &&
+            p.Name.Contains(q) || p.Description.Contains(q));
+               
+            return View(await databaseContext);
         }
 
 
@@ -35,7 +36,7 @@ namespace ETicaret.WebUI.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
+            var product = await _service.GetQueryable()
                 .Include(p => p.Brand)
                 .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -46,7 +47,7 @@ namespace ETicaret.WebUI.Controllers
             var model = new ProductDetailViewModel()
             {
                 Product = product,
-                RelatedProducts = _context.Products.Where(P => P.IsActive && 
+                RelatedProducts = _service.GetQueryable().Where(P => P.IsActive && 
                 P.CategoryId==product.CategoryId && P.Id !=product.Id)
 
             };

@@ -2,7 +2,7 @@
 
 @{
 
-foreach(var anaKategori in Model.Where(x=>x.IsActive && x.IsTopMenu && x.ParentId==0))
+foreach(var anaKategori in Model.Where( x=>x.IsTopMenu && x.ParentId==0))
 {
         <div class="dropdown">
             <a class="  dropdown-toggle nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -10,7 +10,7 @@ foreach(var anaKategori in Model.Where(x=>x.IsActive && x.IsTopMenu && x.ParentI
             </a>
 
             <ul class="dropdown-menu">
-                @foreach (var altKategori in Model.Where(x => x.IsActive && x.IsTopMenu && x.ParentId == anaKategori.Id))
+                @foreach (var altKategori in Model.Where( x=> x.ParentId == anaKategori.Id))
                 {
                     <li><a class="dropdown-item" href="/Categories/Index/@altKategori.Id">@altKategori.Name</a>
                     </li>

@@ -1,21 +1,30 @@
 using ECommerce.Core.Entities;
-using ECommerce.Data;
+using ECommerce.Service.Abstract;
 using ETicaret.WebUI.Models;
-using ETicaret.WebUI.Utils;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace ETicaret.WebUI.Controllers
 {
     public class HomeController : Controller
+        //birden fazla tablodan veri alacaðýmýz için ayrý ayrý ekleriz:
     {
-        private readonly DatabaseContext _context;
+        private readonly IService<Product> _serviceProduct;
+        private readonly IService<News> _serviceNews;
+        private readonly IService<Slider> _serviceSlider;
+        private readonly IService<Contact> _serviceContact;
 
-        public HomeController(DatabaseContext context)
+
+        public HomeController(
+            IService<Product> serviceProduct,
+            IService<News> serviceNews,
+            IService<Slider> serviceSlider,
+            IService<Contact> serviceContact)
         {
-            _context = context;
+            _serviceProduct = serviceProduct;
+            _serviceNews = serviceNews;
+            _serviceSlider = serviceSlider;
+            _serviceContact = serviceContact;
         }
 
         //datayý anasayfaya gönderdik!
@@ -23,9 +32,9 @@ namespace ETicaret.WebUI.Controllers
         {  
             var model = new HomePageViewModel()
             {
-                Sliders= await _context.Sliders.ToListAsync(),
-                News = await _context.News.ToListAsync(),
-                Products = await _context.Products.Where(x=>x.IsActive && x.IsHome).ToListAsync(),
+                Sliders= await _serviceSlider.GetAllAsync(),
+                News = await _serviceNews.GetAllAsync(),
+                Products = await _serviceProduct.GetAllAsync(x => x.IsActive && x.IsHome),
             };
             return View(model);
         }
@@ -53,8 +62,8 @@ namespace ETicaret.WebUI.Controllers
             {
                 try
                 {
-                  await   _context.Contacts.AddAsync(contact);
-                    var sonuc = await _context.SaveChangesAsync();
+                  await   _serviceContact.AddAsync(contact);
+                    var sonuc = await _serviceContact.SaveChangesAsync();
                     if (sonuc > 0)
                     {
                         TempData["Message"] = @"

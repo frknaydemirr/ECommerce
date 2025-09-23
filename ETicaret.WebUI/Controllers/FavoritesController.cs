@@ -1,5 +1,5 @@
 ﻿using ECommerce.Core.Entities;
-using ECommerce.Data;
+using ECommerce.Service.Abstract;
 using ETicaret.WebUI.ExtensionMethods;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +8,11 @@ namespace ETicaret.WebUI.Controllers
     public class FavoritesController : Controller
     {
 
-        private readonly DatabaseContext _context;
+        private readonly IService<Product> _service;
 
-        public FavoritesController(DatabaseContext context)
+        public FavoritesController(IService<Product> service)
         {
-            _context = context;
+            _service = service;
         }
 
 
@@ -34,7 +34,7 @@ namespace ETicaret.WebUI.Controllers
         public IActionResult Add(int ProductId)
         {
             var favoriler = GetFavorites();
-            var product= _context.Products.Find(ProductId);
+            var product = _service.Find(ProductId);
             if(product != null && !favoriler.Any(x=>x.Id==ProductId))
             {
                 favoriler.Add(product);
@@ -47,7 +47,7 @@ namespace ETicaret.WebUI.Controllers
         public IActionResult Remove(int ProductId)
         {
             var favoriler = GetFavorites();
-            var product = _context.Products.Find(ProductId);
+            var product = _service.Find(ProductId);
             if (product != null && favoriler.Any(x => x.Id == ProductId))
             {
                 favoriler.RemoveAll(i=>i.Id == ProductId);

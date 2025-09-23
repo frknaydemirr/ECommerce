@@ -3,6 +3,7 @@ using ECommerce.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
+
 namespace ECommerce.Data
 {
 
@@ -10,6 +11,9 @@ namespace ECommerce.Data
     //veritabanı nesnelerimizi tutacağımız yer:
     public  class DatabaseContext : DbContext
     {
+
+    
+
         public DbSet<AppUser> AppUsers { get; set; }
 
         public DbSet<Brand> Brands { get; set; }

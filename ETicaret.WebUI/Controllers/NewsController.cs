@@ -1,21 +1,21 @@
-﻿using ECommerce.Data;
+﻿using ECommerce.Core.Entities;
+using ECommerce.Service.Abstract;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ETicaret.WebUI.Controllers
 {
     public class NewsController : Controller
     {
 
-        private readonly DatabaseContext _context;
+        private readonly IService<News> _service;
 
-        public NewsController(DatabaseContext context)
+        public NewsController(IService<News> service)
         {
-            _context = context;
+            _service = service;
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.News.ToListAsync());
+            return View(await _service.GetAllAsync());
         }
 
         // GET: Admin/News/Details/5
@@ -26,8 +26,7 @@ namespace ETicaret.WebUI.Controllers
                 return NotFound();
             }
 
-            var news = await _context.News
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var news = await _service.GetAsync(m => m.Id == id);
             if (news == null)
             {
                 return NotFound();

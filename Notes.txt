@@ -223,4 +223,12 @@ Cookie’nin expires süresi ne kadarsa (ör. 7 gün), tarayıcı kapansa da ür
 
 Kullanıcı siteye tekrar girdiğinde → cookie okunur → sepete doldurulur.
 
-👉 Yani “sepette ürünlerin kalması” da cookie ile yapılır (veya DB’de kullanıcıya bağlı sepet kaydı tutarak).
+👉 Yani “sepette ürünlerin kalması” da cookie ile yapılır (veya DB’de kullanıcıya 
+bağlı sepet kaydı tutarak).
+
+
+
+Not:
+Generic Repository Pattern:
+WebUı -> DataContext arasındaki ilişkiyi kuruyor,
+proje büyüdükçe servis yapısı kullanırız:

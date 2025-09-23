@@ -1,4 +1,6 @@
 using ECommerce.Data;
+using ECommerce.Service.Abstract;
+using ECommerce.Service.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 
@@ -16,6 +18,11 @@ namespace ETicaret.WebUI
             //database iþlemleri için:
 
             builder.Services.AddDbContext<DatabaseContext>();
+
+            //generic servis iþlemleri için:
+            builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+
+
 
             //Session iþlemleri için: -> Servis olarak ekledik:
             builder.Services.AddSession(options =>
