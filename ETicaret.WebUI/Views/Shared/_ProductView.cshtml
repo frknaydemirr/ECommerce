@@ -27,7 +27,14 @@
         </div>
         <!-- Product actions-->
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Sepete Ekle</a></div>
+            <form action="/Cart/Add" method="post" >
+                <input type="hidden" name="ProductId" value="@Model.Id" />
+                <div class="text-center"><button class="btn btn-outline-dark mt-auto" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Sepete Ekle</button>
+                    </div>
+
+            </form>
         </div>
     </div>
 </div>
