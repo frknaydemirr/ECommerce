@@ -13,13 +13,15 @@ namespace ECommerce.Core.Entities
         [Display(Name = "Soyadı")]
         public string SurName { get; set; }
 
-
+        [Required(ErrorMessage = "Email alanı zorunludur.")]
         public string Email { get; set; }
 
         [Display(Name = "Telefon")]
         public string? Phone { get; set; }
 
         [Display(Name = "Şifre")]
+
+        [Required(ErrorMessage = "Şifre alanı zorunludur.")]
         public string Password { get; set; }
 
         [Display(Name = "KullanıcıAdı")]
@@ -32,5 +34,7 @@ namespace ECommerce.Core.Entities
         public DateTime CreateDate { get; set; }=DateTime.Now;
         [ScaffoldColumn(false)]
         public Guid? UserGuid { get; set; } = Guid.NewGuid();
+
+        public List<Address?> Address { get; set; } = new List<Address?>();
     }
 }

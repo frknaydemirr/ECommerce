@@ -97,7 +97,7 @@ namespace ETicaret.WebUI.Controllers
                 }
             }
 
-            return View();
+            return View(loginViewModel);
         }
 
 
@@ -115,7 +115,7 @@ namespace ETicaret.WebUI.Controllers
             {
               await  _service.AddAsync(appUser);
                 await _service.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("SignIn");
             }
             return View(appUser);
         }
@@ -168,7 +168,7 @@ namespace ETicaret.WebUI.Controllers
                 }
             }
 
-            return View();
+            return View(model);
         }
 
     }

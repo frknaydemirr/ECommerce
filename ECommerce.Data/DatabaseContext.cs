@@ -1,6 +1,8 @@
 ﻿using ECommerce.Core.Entities;
 using ECommerce.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 
 
@@ -16,6 +18,8 @@ namespace ECommerce.Data
 
         public DbSet<AppUser> AppUsers { get; set; }
 
+        public DbSet<Address> Addresses { get; set; }
+
         public DbSet<Brand> Brands { get; set; }
 
 
@@ -30,6 +34,10 @@ namespace ECommerce.Data
 
         public DbSet<Slider> Sliders { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderLine> OrderLines { get; set; }
+
 
         //database bağlantı ayarı: 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -38,6 +46,9 @@ namespace ECommerce.Data
                 @"Server=localhost;Database=ECommerceDb;Trusted_Connection=True;
                 TrustServerCertificate=True;");
 
+            optionsBuilder.ConfigureWarnings(warnings =>
+    warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -45,6 +56,11 @@ namespace ECommerce.Data
             //modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             //modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+
+         
+
+
 
             base.OnModelCreating(modelBuilder);
         }

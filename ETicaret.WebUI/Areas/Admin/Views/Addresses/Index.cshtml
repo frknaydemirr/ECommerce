@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Address>
+
+@{
+    ViewData["Title"] = "Adresler";
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">
+        <i class="fa-solid fa-plus "></i>
+        Yeni Ekle
+    </a>
+</p>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.District)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.isBilllingAdress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isDeliveryAdress)
+            </th>
+         
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.isBilllingAdress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isDeliveryAdress)
+            </td>
+
+                <td>
+                    <a asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.AdressGuid">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Düzenle
+                    </a>
+                    <a asp-action="Delete" class="btn btn-sm btn-danger" asp-route-id="@item.AdressGuid">
+                        <i class="fa-solid fa-trash"></i>
+                        Sil
+                    </a>
+
+
+
+
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

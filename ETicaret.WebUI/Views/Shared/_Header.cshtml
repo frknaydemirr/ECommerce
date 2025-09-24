@@ -32,9 +32,10 @@
 
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/Account/">Kullanıcı Bilgilerim</a></li>
+                            <li><a class="dropdown-item" href="/MyAddresses/">Kayıtlı Adreslerim</a></li>
                             <li><a class="dropdown-item" href="/Account/">Siparişlerim</a></li>
                             <li><a class="dropdown-item" href="/Account/">Değerlendirmelerim</a></li>
-                            <li><a class="dropdown-item" href="/Account/SignOut">Oturumu Kapat</a></li>
+                            <li class="text-center"><a class="btn btn-danger " href="/Account/SignOut">Oturumu Kapat</a></li>
                         </ul>
                     </div>
                 }
@@ -53,14 +54,14 @@
                     </div>
 
                 }
-                <div class="dropdown">
+                <div class="dropdown mx-3">
                     <a class="nav-link text-dark " href="/Favorites" role="button" 
                    >
                        Favorilerim
                     </a>
 
                 </div>
-                <div class="dropdown">
+                <div class="dropdown me-3">
                 @{
                     var cart = Context.Session.GetJson<ECommerce.Service.Concrete.CartService>("Cart");
                     if(cart != null && cart.CartLines.Count > 0)
