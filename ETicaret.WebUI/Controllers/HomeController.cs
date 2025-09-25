@@ -33,7 +33,7 @@ namespace ETicaret.WebUI.Controllers
             var model = new HomePageViewModel()
             {
                 Sliders= await _serviceSlider.GetAllAsync(),
-                News = await _serviceNews.GetAllAsync(),
+                News = await _serviceNews.GetAllAsync(news =>news.IsActive),
                 Products = await _serviceProduct.GetAllAsync(x => x.IsActive && x.IsHome),
             };
             return View(model);

@@ -21,15 +21,15 @@ namespace ETicaret.WebUI.Controllers
         // GET: Admin/News/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null )
             {
-                return NotFound();
+                return NotFound("Geçersiz İstek!");
             }
 
-            var news = await _service.GetAsync(m => m.Id == id);
+            var news = await _service.GetAsync(m => m.Id == id && m.IsActive );
             if (news == null)
             {
-                return NotFound();
+                return NotFound("Geçerli bir kampanya bulunamadı!");
             }
 
             return View(news);

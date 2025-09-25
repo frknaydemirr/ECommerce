@@ -73,7 +73,7 @@
         <hr />
 
         @* Adres kontrolü *@
-        @if (Model.Addresses is null || !Model.Addresses.Any())
+        @if (Model.Addresses is null || Model.Addresses.Count==0)
         {
             <div class="alert alert-secondary my-5">
                 <h5 class="text-danger">Kayıtlı Adresiniz Yok!</h5>
@@ -96,7 +96,7 @@
                                     <div class="card-header">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                @Html.RadioButton("AddressGuid", item.AdressGuid, false, new { @class = "form-check-input" })
+                                                <input type="radio" class="form-check-input" name="DeliveryAddress" value="@item.AdressGuid" @(item.isDeliveryAdress ? "checked" : "") />
                                                 @item.Title
                                             </label>
                                         </div>
@@ -109,7 +109,7 @@
                                         </p>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" name="BillingAddress" value="@item.AdressGuid" />
+                                                <input type="radio" class="form-check-input" name="BillingAddress" value="@item.AdressGuid" @(item.isBilllingAdress ? "checked" : "" ) />
                                                 Fatura Adresi
                                             </label>
                                         </div>
@@ -118,7 +118,7 @@
                             </div>
                         }
                     </div>
-                </div>
+                </div>s
                 <div class="my-5">
                     <h2>Ödeme Seçenekleri</h2>
                     <h3>Kart ile Öde</h3>

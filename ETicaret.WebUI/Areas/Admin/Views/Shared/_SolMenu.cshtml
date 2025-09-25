@@ -50,11 +50,16 @@
                     İletişim  Formları
                 </a>
 
+                <a class="nav-link" href="/Admin/Orders">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                   Siparişler
+                </a>
+
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-          Admin
+            <div class="small">Hoşgeldin:</div>
+          @Context.User.Identity.Name
         </div>
     </nav>
 </div>

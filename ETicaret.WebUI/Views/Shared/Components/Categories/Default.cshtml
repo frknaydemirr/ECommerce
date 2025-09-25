@@ -8,15 +8,19 @@ foreach(var anaKategori in Model.Where( x=>x.IsTopMenu && x.ParentId==0))
             <a class="  dropdown-toggle nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 @anaKategori.Name
             </a>
+            @if (Model.Where(x => x.ParentId == anaKategori.Id) is not null && Model.Where(x => x.ParentId == anaKategori.Id).Count()>0)
+            {
+                <ul class="dropdown-menu">
+                    @foreach (var altKategori in Model.Where(x => x.ParentId == anaKategori.Id))
+                    {
+                        <li>
+                            <a class="dropdown-item" href="/Categories/Index/@altKategori.Id">@altKategori.Name</a>
+                        </li>
+                    }
 
-            <ul class="dropdown-menu">
-                @foreach (var altKategori in Model.Where( x=> x.ParentId == anaKategori.Id))
-                {
-                    <li><a class="dropdown-item" href="/Categories/Index/@altKategori.Id">@altKategori.Name</a>
-                    </li>
-                }
-             
-            </ul>
+                </ul>
+            }
+           
         </div>
 
 }
