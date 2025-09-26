@@ -32,11 +32,15 @@ namespace ECommerce.Data
 
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<ProductImage> ProductImages { get; set; }
+
         public DbSet<Slider> Sliders { get; set; }
 
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderLine> OrderLines { get; set; }
+
+
 
 
         //database bağlantı ayarı: 

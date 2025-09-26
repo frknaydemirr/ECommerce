@@ -11,6 +11,8 @@ namespace ECommerce.Core.Entities
         [Display(Name = "Açıklama")]
         public string? Description { get; set; }
         [Display(Name = "Resim")]
+
+        //Not: 1 ürünün 1'den fazla resmi olabilir!
         public string? Image { get; set; }
         [Display(Name = "Fiyat")]
         public Decimal Price { get; set; }
@@ -29,7 +31,7 @@ namespace ECommerce.Core.Entities
         public Category?  Category { get; set; }
         [Display(Name = "Kategori")]
         public int? BrandId { get; set; }
-
+        
         [Display(Name = "Marka")]
         public Brand? Brand { get; set; }
         [Display(Name = "Sıra")]
@@ -37,6 +39,8 @@ namespace ECommerce.Core.Entities
 
         [Display(Name = "Kayıt Tarihi"), ScaffoldColumn(false)]
         public DateTime CreateDate { get; set; } = DateTime.Now;
+
+        public List<ProductImage> ProductImages { get; set; }
 
     }
 }

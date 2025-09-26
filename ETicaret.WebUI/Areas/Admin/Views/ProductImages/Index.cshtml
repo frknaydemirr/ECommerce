@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ECommerce.Core.Entities.ProductImage>
+
+@{
+    ViewData["Title"] = "Ürün Resimleri";
+}
+
+
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">
+        <i class="fa-solid fa-plus "></i>
+        Yeni Ekle
+    </a>
+</p>
+<table class="table table-hover table-striped" id="datatablesSimple">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    <a href="~/img/Products/@item.Name">
+                        <img src="~/img/Products/@item.Name" alt="@item.Name" height="100" />
+                    </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-pen-to-square"></i>
+
+                    </a>
+                    <a asp-action="Details" class="btn btn-sm btn-info" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                    </a>
+                    <a asp-action="Delete" class="btn btn-sm btn-danger" asp-route-id="@item.Id">
+                        <i class="fa-solid fa-trash"></i>
+
+                    </a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="/admin/js/datatables-simple-demo.js"></script>
+}

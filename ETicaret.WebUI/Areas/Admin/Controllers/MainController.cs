@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ECommerce.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETicaret.WebUI.Areas.Admin.Controllers
@@ -8,8 +9,19 @@ namespace ETicaret.WebUI.Areas.Admin.Controllers
     [Authorize(Policy = "AdminPolicy")]
     public class MainController : Controller
     {
+
+
+        private readonly DatabaseContext _context;
+
+        public MainController(DatabaseContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
+            ViewBag.Products = _context.Products;
+
             return View();
         }
     }

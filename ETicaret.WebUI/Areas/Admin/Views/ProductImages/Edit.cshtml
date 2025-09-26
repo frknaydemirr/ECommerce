@@ -1,0 +1,47 @@
+﻿@model ProductImage
+
+@{
+    ViewData["Title"] = "Ürün Resmi Düzenle";
+}
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Name" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" type="file" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+                @if (Model.Name != null && !string.IsNullOrWhiteSpace(Model.Name))
+                {
+                    <img src="/Img/Products/@Model.Name" height="75" />
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            @Html.CheckBox("cbResmiSil") Resmi Sil
+                        </label>
+                    </div>
+
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="Alt" class="control-label"></label>
+                <input asp-for="Alt" class="form-control"  />
+                <span asp-validation-for="Alt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductId" class="control-label"></label>
+                <select asp-for="ProductId" class="form-select" asp-items="ViewBag.ProductId"></select>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
