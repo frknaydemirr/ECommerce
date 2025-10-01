@@ -21,3 +21,6 @@ html {
 
     display:block;
 }
+a:hover{
+    cursor:pointer!important
+}

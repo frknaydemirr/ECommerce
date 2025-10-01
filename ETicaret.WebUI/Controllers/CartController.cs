@@ -43,20 +43,46 @@ namespace ETicaret.WebUI.Controllers
         }
 
 
-        public IActionResult Add(int ProductId, int Quantity = 1)
+        //public IActionResult Add(int ProductId, int Quantity = 1)
+        //{
+        //    var product = _serviceProduct.Find(ProductId);
+        //    if (product != null) // ürün bulunduysa
+        //    {
+        //        var cart = GetCart();
+        //        cart.AddProduct(product, Quantity);
+        //        HttpContext.Session.SetJson("Cart", cart);
+        //        return Redirect(Request.Headers["Referer"].ToString());
+        //        //kullanıcının buraya gelmeden bi önceki sayfasına yönlendiriyor
+        //        //daha iyi bir kullanıcı deneyimi yaşatırız!
+        //    }
+
+        //    return RedirectToAction("Index");
+        //}
+
+
+        [HttpPost]
+        public IActionResult Add(int ProductId)
         {
             var product = _serviceProduct.Find(ProductId);
-            if (product != null) // ürün bulunduysa
+            if (product == null)
             {
-                var cart = GetCart();
-                cart.AddProduct(product, Quantity);
-                HttpContext.Session.SetJson("Cart", cart);
-                return Redirect(Request.Headers["Referer"].ToString());
-                //kullanıcının buraya gelmeden bi önceki sayfasına yönlendiriyor
-                //daha iyi bir kullanıcı deneyimi yaşatırız!
+                return Json(new { success = false, message = "Ürün bulunamadı!" });
             }
+            var cart = GetCart();
+            cart.AddProduct(product,1);
+            SaveCart(cart);
 
-            return RedirectToAction("Index");
+            return Json(new
+            {
+                success = true,
+                cartCount = cart.CartLines.Count,
+                productName = product.Name 
+            });
+        }
+
+        private void SaveCart(CartService cart)
+        {
+            HttpContext.Session.SetJson("Cart", cart);
         }
 
         public IActionResult Update(int ProductId, int Quantity = 1)

@@ -3,14 +3,12 @@
 <div class="col mb-5">
     <div class="card h-100">
         <!-- Sale badge-->
-        <div class="badge  position-absolute" style="top:0.5rem; right:0.5rem">
-      <form   asp-action="Add" asp-controller="Favorites">
-          <input type="hidden" value="@Model.Id" name="ProductId" />
-          <button class="btn btn-transparent" type="submit" style="box-shadow: none">
-              <i class="bi-heart"></i>
-          </button>
-      </form>
+        <div class="badge position-absolute" style="top:0.5rem; right:0.5rem">
+            <button class="btn btn-transparent add-to-favorites" data-id="@Model.Id" style="box-shadow: none">
+                <i class="bi-heart"></i>
+            </button>
         </div>
+
         <!-- Product image-->
         <a href="/Products/Details/@Model.Id">
             <img class="card-img-top" src="/Img/Products/@Model.Image" alt="@Model.Name">
@@ -25,16 +23,30 @@
                 @Model.Price.ToString("c")
             </div>
         </div>
-        <!-- Product actions-->
+        <!-- Sepete Ekleme-->
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <form action="/Cart/Add" method="post" >
-                <input type="hidden" name="ProductId" value="@Model.Id" />
-                <div class="text-center"><button class="btn btn-outline-dark mt-auto" type="submit">
+            <div class="text-center">
+                <button class="btn btn-outline-dark mt-auto add-to-cart" data-id="@Model.Id">
                     <i class="bi-cart-fill me-1"></i>
-                    Sepete Ekle</button>
-                    </div>
-
-            </form>
+                    Sepete Ekle
+                </button>
+            </div>
         </div>
-    </div>
+
 </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="@Url.Content("~/js/debugger.js")"></script>
+
+
+
+
+
+
+
+
