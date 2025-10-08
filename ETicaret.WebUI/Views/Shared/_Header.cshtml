@@ -1,112 +1,231 @@
-﻿@using ETicaret.WebUI.ExtensionMethods
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ETicaret.WebUI</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-evenly ">
-                <form action="/Products" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search"
-                           name="q"
-                           class="form-control "
-                           placeholder="Ürün Ara..."
-                           aria-label="Search">
-                </form>
-                <ul class="navbar-nav m-auto ">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Anasayfa</a>
-                    </li>
-                    @await Component.InvokeAsync("Categories")
-                   
-                </ul>
-                @* kullanıcı oturum açmış mı *@
-                        @if (Context.User.Identity.IsAuthenticated)
-                {
-                    <div class="dropdown">
-                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         <i class="bi bi-person-fill"></i>   Hesabım
-                        </a>
+﻿<header class="header shop">
+	<!-- Topbar -->
+	<div class="topbar">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12 col-12">
+					<!-- Top Left -->
+					<div class="top-left">
+						<ul class="list-main">
+							<li><i class="ti-headphone-alt"></i> +070 (460) 532-654</li>
+							<li><i class="ti-email"></i> <a href="https://themes.themewild.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="90e3e5e0e0ffe2e4d0f5e8f1fde0fcf5bef3fffd">[email&#160;protected]</a></li>
+						</ul>
+					</div>
+					<!--/ End Top Left -->
+				</div>
+				<div class="col-lg-6 col-md-12 col-12">
+					<!-- Top Right -->
+					<div class="right-content">
+						<ul class="list-main">
+							<li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
+							<li><i class="ti-user"></i> <a href="#">My account</a></li>
+							<li><i class="ti-power-off"></i><a href="login.html">Login</a></li>
+							<li>
+								<div class="dropdown top-dropdown">
+									<a href="#" id="lang" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="ti-world"></i> EN <i class="fal fa-angle-down"></i>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="lang">
+										<a class="dropdown-item" href="#"><i class="ti-world"></i> EN</a>
+										<a class="dropdown-item" href="#"><i class="ti-world"></i> RU</a>
+										<a class="dropdown-item" href="#"><i class="ti-world"></i> GE</a>
+										<a class="dropdown-item" href="#"><i class="ti-world"></i> HK</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="dropdown top-dropdown">
+									<a href="#" id="payment" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="fal fa-dollar-sign"></i> USD <i class="fal fa-angle-down"></i>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="payment">
+										<a class="dropdown-item" href="#"><i class="fal fa-dollar-sign"></i> USD</a>
+										<a class="dropdown-item" href="#"><i class="fal fa-euro-sign"></i> EUR</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- End Top Right -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Topbar -->
+	<div class="middle-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-12">
+					<!-- Logo -->
+					<div class="logo">
+						<a href="index.html"><img src="~/smartshop/assets/img/logo.png" alt="logo"></a>
+					</div>
+					<!--/ End Logo -->
+					<!-- Search Form -->
+					<div class="search-top">
+						<div class="top-search"><a href="#0"><i class="far fa-search"></i></a></div>
+						<!-- Search Form -->
+						<div class="search-top">
+							<form class="search-form">
+								<input type="text" placeholder="Search here..." name="search">
+								<button value="search" type="submit"><i class="far fa-search"></i></button>
+							</form>
+						</div>
+						<!--/ End Search Form -->
+					</div>
+					<!--/ End Search Form -->
+					<div class="mobile-nav"></div>
+				</div>
+				<div class="col-lg-7 col-md-6 col-12">
+					<div class="search-bar-top">
+						<div class="search-bar">
+							<select>
+								<option selected="selected">Kategoriler</option>
+								<option>Moda</option>
+								<option>Elektronik</option>
+								<option>Ev, Yaşam, Kırtasiye, Ofis</option>
+								<option>Oto, Bahçe, Yapı Market</option>
+								<option>Spor, Outdoor</option>
+								<option>Kozmetik, Kişisel Bakım</option>
+								<option>Kitap, Müzik, Film, Hobi</option>
+							</select>
+							<form>
+								<input name="search" placeholder="Ürün Ara....." type="search">
+								<button class="btnn"><i class="far fa-search"></i></button>
+							</form>
+						</div>
+					</div>
+				</div>
 
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/Account/">Kullanıcı Bilgilerim</a></li>
-                            <li><a class="dropdown-item" href="/MyAddresses/">Kayıtlı Adreslerim</a></li>
-                            <li><a class="dropdown-item" href="/Account/MyOrders">Siparişlerim</a></li>
-                            <li><a class="dropdown-item" href="/Account/">Değerlendirmelerim</a></li>
-                            <li class="text-center"><a class="btn btn-danger " href="/Account/SignOut">Oturumu Kapat</a></li>
-                        </ul>
-                    </div>
-                }
-                else
-                {
-                    <div class="dropdown">
-                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                             <i class="bi bi-person"></i> Giriş Yap
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/Account/SignIn">Giriş</a></li>
-                            <li><a class="dropdown-item" href="/Account/SignUp">Üye Ol</a></li>
-
-                        </ul>
-                    </div>
-
-                }
-                <div class="dropdown mx-3">
-                    <a class="nav-link text-dark " href="/Favorites" >
-                        @{
-                            var favorites = Context.Session.GetJson<List<Product>>("GetFavorites");
-                            if (favorites is not null && favorites.Count>0)
-                            {
-                                <i class="bi bi-heart-fill"></i>@:Favorilerim (@favorites.Count)
-                            }
-                            else
-                            {
-                                <i class="bi bi-heart"></i>
-                                @:Favorilerim
-                            }
-                        }
-                  
-                    </a>
-
-                </div>
-                <div class="dropdown me-3">
-                @{
-                    var cart = Context.Session.GetJson<ECommerce.Service.Concrete.CartService>("Cart");
-                    if(cart != null && cart.CartLines.Count > 0)
-                    {
-                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-cart-fill"></i> Sepetim
-                        </a>
-                        <span class="badge bg-danger text-white ms-1 rounded-pill">
-                        @cart.CartLines.Count</span>
-
-                        <ul class="dropdown-menu">
-                           
-                                @foreach(var item in cart.CartLines)
-                                {
-                                    <li><a class="dropdown-item " href="/Products/Details/@item.Product.Id">
-                                    <img src="/Img/Products/@item.Product.Image"  alt="" height="50"/>
-                                    @item.Product.Name
-                                    </a></li>
-                                }
-                                <li class="text-center"><a class="btn btn-warning " href="/Cart">Sepete Git</a></li>
-                            </ul>
-                        }
-                        else
-                        {
-                            <a class="nav-link text-dark " href="/Cart" role="button">
-                                <i class="bi bi-cart"></i>Sepetim
-                            </a>
-                        }
-
-                }
-                </div>
-                <a class="nav-link text-dark" asp-controller="Home" asp-action="ContactUs">İletişim</a>
-                        </div>
-                    </div>
-                    </nav>
-                </header>
-                
+				<div class="col-lg-2 col-md-3 col-12">
+					<div class="right-bar">
+						<!-- Search Form -->
+						<div class="sinlge-bar">
+							<a href="#" class="single-icon"><i class="fal fa-heart" aria-hidden="true"></i></a>
+						</div>
+						<div class="sinlge-bar">
+							<a href="#" class="single-icon"><i class="fal fa-user-circle" aria-hidden="true"></i></a>
+						</div>
+						<div class="sinlge-bar shopping">
+							<a href="#" class="single-icon"><i class="fal fa-shopping-cart"></i> <span class="total-count">2</span></a>
+							<!-- Shopping Item -->
+							<div class="shopping-item">
+								<div class="dropdown-cart-header">
+									<span>2 Items</span>
+									<a href="#">View Cart</a>
+								</div>
+								<ul class="shopping-list">
+									<li>
+										<a href="#" class="remove" title="Remove this item"><i class="fal fa-times-circle"></i></a>
+										<a class="cart-img" href="#"><img src="~/smartshop/assets/img/products/p22.png" alt="#"></a>
+										<h4><a href="#">Xamaha R15 Blue</a></h4>
+										<p class="quantity">1x - <span class="amount">$200.00</span></p>
+									</li>
+									<li>
+										<a href="#" class="remove" title="Remove this item"><i class="fal fa-times-circle"></i></a>
+										<a class="cart-img" href="#"><img src="~/smartshop/assets/img/products/p3.png" alt="#"></a>
+										<h4><a href="#">Apple Earphones</a></h4>
+										<p class="quantity">1x - <span class="amount">$150.00</span></p>
+									</li>
+								</ul>
+								<div class="bottom">
+									<div class="total">
+										<span>Total</span>
+										<span class="total-amount">$350.00</span>
+									</div>
+									<a href="checkout.html" class="btn animate">Checkout</a>
+								</div>
+							</div>
+							<!--/ End Shopping Item -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Header Inner -->
+	<div class="header-inner shadow">
+		<div class="container">
+			<div class="cat-nav-head">
+				<div class="row">
+					<div class="col-12">
+						<div class="menu-area">
+							<!-- Main Menu -->
+							<nav class="navbar navbar-expand-lg">
+								<div class="navbar-collapse">
+									<div class="nav-inner">
+										<ul class="nav main-menu menu navbar-nav">
+											<li class="active">
+												<a href="#">Anasayfa<i class="ti-angle-down"></i></a>
+											</li>
+											<li>
+												<a href="#">Kullanıcı Hesabı | Hesabım<i class="ti-angle-down"></i></a>
+												<ul class="dropdown">
+													<li><a href="order-list.html">Siparişlerim</a></li>
+													<li><a href="order-detail.html">Sipariş Detaylarım</a></li>
+													<li><a href="add-address.html">Adres Ekle</a></li>
+													<li><a href="address-list.html">Adres Listesi</a></li>
+													<li><a href="profile.html">Profilim</a></li>
+													<li><a href="edit-profile.html">Profilimi Düzenle</a></li>
+													<li><a href="wishlist.html">İstek Listesi</a></li>
+													<li><a href="payment-method.html">Ödeme Yolları</a></li>
+													<li><a href="add-payment.html"> Ödeme Ekle</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="#">Vendor<i class="ti-angle-down"></i></a>
+												<ul class="dropdown">
+													<li><a href="dashboard.html">Dashboard</a></li>
+													<li><a href="product.html">Products</a></li>
+													<li><a href="add-product.html">Add Product</a></li>
+													<li><a href="all-order.html">All Orders</a></li>
+													<li><a href="order-detail.html">Order Details</a></li>
+													<li><a href="all-vendor.html">All Vendors</a></li>
+													<li><a href="vendor-store.html">Vendor Store</a></li>
+													<li><a href="vendor-profile.html">Vendor Profile</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="#">Sepet Listesi<i class="ti-angle-down"></i><span class="new">New</span></a>
+												<ul class="dropdown">
+													<li><a href="shop-grid.html">İlgilendiğiniz Ürünler</a></li>
+													<li><a href="shop-list.html">Shop List</a></li>
+													<li><a href="shop-single.html">Shop Single</a></li>
+													<li><a href="shop-search.html">Shop Search</a></li>
+													<li><a href="cart.html">Cart</a></li>
+													<li><a href="checkout.html">Checkout</a></li>
+													<li><a href="compare.html">Shop Compare</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="#">Sayfalar<i class="ti-angle-down"></i></a>
+												<ul class="dropdown">
+													<li><a href="about-us.html">Hakkımızda</a></li>
+													<li><a href="team.html">Team</a></li>
+													<li><a href="login.html">Giriş Yap</a></li>
+													<li><a href="register.html">Üye Ol</a></li>
+													<li><a href="forgot-password.html">Şifremi Unuttum</a></li>
+													<li><a href="term-condition.html">Gizlilik & Koşullar</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="#">Blog<i class="ti-angle-down"></i></a>
+												<ul class="dropdown">
+													<li><a href="blog-grid-sidebar.html">Blog & Blog Detayları</a></li>
+													
+												</ul>
+											</li>
+											<li><a href="contact.html">İletişim</a></li>
+										</ul>
+									</div>
+								</div>
+							</nav>
+							<!--/ End Main Menu -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ End Header Inner -->
+</header>

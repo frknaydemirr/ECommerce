@@ -24,18 +24,30 @@ namespace ETicaret.WebUI.Controllers
             _serviceOrder = serviceOrder;
         }
 
-        public IActionResult Index()
+        //claims tabanlı:
+        public async Task<IActionResult> Index()
         {
             var cart = GetCart();
+
+            AppUser? currentUser = null;
+            // UserGuid claim'ini al
+            var userGuidClaim = HttpContext.User.FindFirst("UserGuid")?.Value;
+
+            if (!string.IsNullOrEmpty(userGuidClaim))
+            {
+                
+                currentUser = await _serviceAppUser.GetAsync(x => x.UserGuid.ToString() == userGuidClaim);
+            }
+
             CartViewModel model = new CartViewModel()
             {
                 cartLines = cart.CartLines,
-                TotalPrice = cart.TotalPrice()
-
+                TotalPrice = cart.TotalPrice(),
+                CurrentUser = currentUser
             };
+
             return View(model);
         }
-
         //Kart Bilgilerini Getirsin:
         private CartService GetCart()
         {
@@ -79,6 +91,8 @@ namespace ETicaret.WebUI.Controllers
                 productName = product.Name 
             });
         }
+
+        //json result ile -> swal ile sepete ürün ekleme:
 
         private void SaveCart(CartService cart)
         {

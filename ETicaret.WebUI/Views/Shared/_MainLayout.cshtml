@@ -1,0 +1,73 @@
+﻿@* <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="HTTrack is an easy-to-use website mirror utility..." />
+    <meta name="keywords" content="httrack, HTTRACK, offline browser, ..." />
+    <title>@ViewData["Title"] - ETicaret.WebUI</title>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            margin-bottom: 15px;
+            margin-top: 8px;
+            background: #77b;
+        }
+
+        body,
+        td {
+            font: 14px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        }
+
+        #subTitle {
+            background: #000;
+            color: #fff;
+            padding: 4px;
+            font-weight: bold;
+        }
+
+        /* ... geri kalan CSS aynı ... */
+    </style>
+</head>
+
+<body>
+    <table width="76%" border="0" align="center" cellspacing="0" cellpadding="3" class="tableWidth">
+        <tr>
+            <td id="subTitle">HTTrack Website Copier - Open Source offline browser</td>
+        </tr>
+    </table>
+
+    <!-- Menü ve içerik kısmı -->
+    <table width="76%" border="0" align="center" cellspacing="0" cellpadding="0" class="tableWidth">
+        <tr class="blak">
+            <td>
+                <table width="100%" border="0" align="center" cellspacing="1" cellpadding="0">
+                    <tr>
+                        <td colspan="6">
+                            <table width="100%" border="0" align="center" cellspacing="0" cellpadding="10">
+                                <tr>
+                                    <td id="pageContent">
+                                        @RenderBody() <!-- Burası kritik: view içeriği buraya gelecek -->
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    @RenderBody()
+    <table width="76%" border="0" align="center" valign="bottom" cellspacing="0" cellpadding="0">
+        <tr>
+            <td id="footer">
+                <small>&copy; 2008 Xavier Roche & other contributors - Web Design: Leto Kauler.</small>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
+ *@

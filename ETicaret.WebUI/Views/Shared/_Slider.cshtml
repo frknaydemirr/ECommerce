@@ -1,33 +1,115 @@
-﻿@model IEnumerable<Slider>
+﻿<section class="hero-slider mt-1 py-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 pt-4">
+				<div class="bg-grey home-2-slider">
+					<div class="main-hero-slider owl-carousel owl-theme">
+						<!-- Single Slider -->
+						<div class="item">
+							<div class="single-slider item">
+								<div class="row">
+									<div class="col-lg-8 col-md-8 my-auto">
+										<div class="text-inner">
+											<div class="hero-text p-0">
+												<h1><span>UP TO 50% OFF </span>For Your First Buy</h1>
+												<p>There are many variations of passages of lorem ipsum <br> available but the majority have suffered alteration in <br> some form  by injected humour.</p>
+												<div class="button">
+													<a href="#" class="btn">Shop Now!</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 my-auto">
+										<img src="~/smartshop/assets/img/slider/slider.png" class="w-100" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--/ End Single Slider -->
+						<!-- Single Slider -->
+						<div class="item">
+							<div class="single-slider item">
+								<div class="row">
+									<div class="col-lg-8 col-md-8 my-auto">
+										<div class="text-inner">
+											<div class="hero-text  p-0">
+												<h1><span>UP TO 50% OFF </span>For Your First Buy</h1>
+												<p>There are many variations of passages of lorem ipsum <br> available but the majority have suffered alteration in <br> some form  by injected humour.</p>
+												<div class="button">
+													<a href="#" class="btn">Shop Now!</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 my-auto">
+										<img <img src="~/smartshop/assets/img/slider/slider.png" class="w-100" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--/ End Single Slider -->
+						<!-- Single Slider -->
+						<div class="item">
+							<div class="single-slider item">
+								<div class="row">
+									<div class="col-lg-8 col-md-8 my-auto">
+										<div class="text-inner">
+											<div class="hero-text  p-0">
+												<h1><span>UP TO 50% OFF </span>For Your First Buy</h1>
+												<p>There are many variations of passages of lorem ipsum <br> available but the majority have suffered alteration in <br> some form  by injected humour.</p>
+												<div class="button">
+													<a href="#" class="btn">Shop Now!</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 my-auto">
+										<img <img src="~/smartshop/assets/img/slider/slider.png" class="w-100" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--/ End Single Slider -->
 
-<div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      
-        @foreach(var item in Model)
-{
-            <div class="carousel-item  @(item == Model.FirstOrDefault() ? "active" : "")">
-                <a href="@item.Link">
+					</div>
+				</div>
+			</div>
 
-                    <img src="Img/Slider/@item.Image" class="d-block w-100">
-                </a>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>@item.Title</h5>
-                    <p>@item.Description</p>
-                </div>
-            </div>
-}
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
+			<div class="col-lg-4 pt-4">
+				<!-- Start Small Banner  -->
+				<div class="small-banner pt-0">
+					<div class="row">
+						<!-- Single Banner  -->
+						<div class="col-12">
+							<div class="single-banner">
+								<img src="~/smartshop/assets/img/mini-banner1.jpg" alt="#">
+								<div class="content">
+									<p>Hot Collections</p>
+									<h3>Best travel sale<br> collection</h3>
+									<a href="#">Discover Now</a>
+								</div>
+							</div>
+						</div>
+						<!-- /End Single Banner  -->
+						<!-- Single Banner  -->
+						<div class="col-12 mt-4">
+							<div class="single-banner">
+								<img src="~/smartshop/assets/img/mini-banner2.jpg" alt="#">
+								<div class="content">
+									<p>Bag Collections</p>
+									<h3>Awesome Bag <br> Collecton</h3>
+									<a href="#">Shop Now</a>
+								</div>
+							</div>
+						</div>
+						<!-- /End Single Banner  -->
+					</div>
+				</div>
+				<!-- End Small Banner -->
+			</div>
+
+		</div>
+
+	</div>
+
+</section>

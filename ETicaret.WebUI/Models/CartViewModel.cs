@@ -7,5 +7,7 @@ namespace ETicaret.WebUI.Models
         public List<CartLine>?  cartLines { get; set; }
 
         public decimal  TotalPrice { get; set; }
+
+        public AppUser? CurrentUser { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model CartViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@model CartViewModel
 @{
 
     ViewBag.Title = "Sepetim";
@@ -106,6 +107,18 @@
                     </a>
                 </div>
 
+                @* Kullanıcı giriş yaptıysa *@
+                @if (Model.CurrentUser != null)
+                {
+                    <div class="mt-3 p-3 bg-light border rounded">
+                        <p class="mb-1"><strong>Ad Soyad:</strong> @Model.CurrentUser.Name @Model.CurrentUser.SurName</p>
+                        <p class="mb-1"><strong>Email:</strong> @Model.CurrentUser.Email</p>
+                        @if (!string.IsNullOrEmpty(Model.CurrentUser.Phone))
+                        {
+                            <p class="mb-0"><strong>Telefon:</strong> @Model.CurrentUser.Phone</p>
+                        }
+                    </div>
+                }
         </div>
         }
         else

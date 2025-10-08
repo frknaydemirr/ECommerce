@@ -26,22 +26,44 @@ namespace ETicaret.WebUI.Controllers
 
         private List<Product> GetFavorites()
         {
-            return HttpContext.Session.GetJson<List<Product>>("GetFavorites") ?? [];
+            return HttpContext.Session.GetJson<List<Product>>("GetFavorites") ?? new List<Product>();
 
         }
-
-
+        [HttpPost]
         public IActionResult Add(int ProductId)
         {
             var favoriler = GetFavorites();
             var product = _service.Find(ProductId);
-            if(product != null && !favoriler.Any(x=>x.Id==ProductId))
+
+            if (product == null)
+            {
+                return Json(new { success = false, message = "Ürün bulunamadı!" });
+            }
+
+            if (!favoriler.Any(x => x.Id == ProductId))
             {
                 favoriler.Add(product);
                 HttpContext.Session.SetJson("GetFavorites", favoriler);
-            }   
-            return RedirectToAction("Index");
+
+                return Json(new
+                {
+                    success = true,
+                    message = $"{product.Name} favorilere eklendi!",
+                    favoritesCount = favoriler.Count
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = $"{product.Name} zaten favorilerinizde!"
+                });
+            }
         }
+
+
+
 
 
         public IActionResult Remove(int ProductId)

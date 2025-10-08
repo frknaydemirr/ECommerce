@@ -1,52 +1,160 @@
 ﻿@model Product
 
 <div class="col mb-5">
-    <div class="card h-100">
-        <!-- Sale badge-->
-        <div class="badge position-absolute" style="top:0.5rem; right:0.5rem">
-            <button class="btn btn-transparent add-to-favorites" data-id="@Model.Id" style="box-shadow: none">
-                <i class="bi-heart"></i>
+    <div class="card h-100 product-card">
+        <!-- Favoriye ekleme kalp iconu -->
+        <div class="badge position-absolute" style="top:0.5rem; right:0.5rem; z-index: 10;">
+            <button class="btn btn-transparent add-to-favorites" style="box-shadow: none; background: rgba(255,255,255,0.8); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" data-id="@Model.Id">
+                <i class="bi-heart" style="font-size: 1.2rem;"></i>
             </button>
         </div>
 
-        <!-- Product image-->
-        <a href="/Products/Details/@Model.Id">
-            <img class="card-img-top" src="/Img/Products/@Model.Image" alt="@Model.Name">
-        </a>
-        <!-- Product details-->
-        <div class="card-body p-4">
-            <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder">@Model.Name</h5>
-                <!-- Product price-->
-             
-                @Model.Price.ToString("c")
+        <!-- Product image -->
+        <div class="product-image-container position-relative overflow-hidden">
+            <a href="/Products/Details/@Model.Id" class="d-block">
+                <img class="card-img-top product-image" src="/Img/Products/@Model.Image" alt="@Model.Name">
+                <div class="image-overlay"></div>
+            </a>
+            <!-- Hover efekti için buton -->
+            <div class="product-hover-actions position-absolute w-100 text-center">
+                <button class="btn btn-dark quick-view-btn" data-id="@Model.Id">
+                    Hızlı Görünüm
+                </button>
             </div>
         </div>
-        <!-- Sepete Ekleme-->
+
+        <!-- Product details -->
+        <div class="card-body p-4">
+            <div class="text-center">
+                <!-- Product name -->
+                <h5 class="fw-bolder product-name mb-2">@Model.Name</h5>
+                <!-- Product rating -->
+                <div class="product-rating mb-2">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-half text-warning"></i>
+                    <span class="small text-muted ms-1">(24)</span>
+                </div>
+                <!-- Product price -->
+                <div class="product-price fw-bold text-primary fs-5">
+                    @Model.Price.ToString("c")
+                </div>
+                <!-- Stok durumu -->
+                <div class="stock-status mt-1">
+                    <span class="badge bg-success">Stokta</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sepete Ekleme -->
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
-                <button class="btn btn-outline-dark mt-auto add-to-cart" data-id="@Model.Id">
+                <button class="btn btn-outline-dark mt-auto add-to-cart w-100" data-id="@Model.Id">
                     <i class="bi-cart-fill me-1"></i>
                     Sepete Ekle
                 </button>
             </div>
         </div>
-
+    </div>
 </div>
-</div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- CSS Stilleri -->
+<style>
+    .product-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
 
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+
+    .product-image-container {
+        height: 250px;
+        background-color: #f8f9fa;
+    }
+
+    .product-image {
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.4s ease;
+    }
+
+    .product-card:hover .product-image {
+        transform: scale(1.05);
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.1));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .product-card:hover .image-overlay {
+        opacity: 1;
+    }
+
+    .product-hover-actions {
+        bottom: 15px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+    }
+
+    .product-card:hover .product-hover-actions {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .quick-view-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        border-radius: 20px;
+    }
+
+    .product-name {
+        color: #333;
+        font-size: 1.1rem;
+        height: 2.6rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .product-price {
+        color: #2c5aa0;
+    }
+
+    .add-to-cart {
+        border-radius: 8px;
+        padding: 10px;
+        transition: all 0.2s ease;
+    }
+
+        .add-to-cart:hover {
+            background-color: #212529;
+            color: white;
+        }
+
+    .add-to-favorites:hover i {
+        color: #dc3545;
+    }
+</style>
+
+<!-- Script dosyaları -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="@Url.Content("~/js/debugger.js")"></script>
-
-
-
-
-
-
-
-
+<script src="@Url.Content("~/js/debugger2.js")"></script>
