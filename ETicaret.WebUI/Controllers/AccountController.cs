@@ -203,7 +203,12 @@ namespace ETicaret.WebUI.Controllers
             return View();
         }
 
-       
+
+        public IActionResult TermConditions()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> PasswordRenewAsync(string Email)

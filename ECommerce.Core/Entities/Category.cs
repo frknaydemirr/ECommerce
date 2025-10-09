@@ -33,5 +33,10 @@ namespace ECommerce.Core.Entities
         public IList<Product>? Products { get; set; }
         //one category includes many products
 
+
+        public Language Language { get; set; }
+
+        public int LanguageId { get; set; } = 7;
+
     }
 }

@@ -48,5 +48,10 @@ namespace ECommerce.Core.Entities
         [Display(Name = "İndirimli Fiyat")]
         public decimal? DiscountPrice { get; set; }
 
+
+        public Language Language { get; set; }
+
+        public int LanguageId { get; set; } = 7;
+
     }
 }

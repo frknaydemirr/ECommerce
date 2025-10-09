@@ -38,5 +38,11 @@ namespace ECommerce.Core.Entities
 
         [Display(Name = "Aktif")]
         public bool IsActive { get; set; } = true;
+
+        public Language Language { get; set; }
+
+        public int LanguageId { get; set; } = 7;
+
+
     }
 }

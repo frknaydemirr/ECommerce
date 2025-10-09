@@ -41,6 +41,19 @@ namespace ECommerce.Data
         public DbSet<OrderLine> OrderLines { get; set; }
 
 
+        public DbSet<CompanyInfo> CompanyInfos { get; set; }
+
+
+        public DbSet<Language> Languages { get; set; }
+
+
+        public DbSet<Resource> Resources { get; set; }
+
+        public DbSet<AdminNavbar> AdminNavbar { get; set; }
+
+        public DbSet<NavbarMain> NavbarMain { get; set; }
+
+
 
 
         //database bağlantı ayarı: 

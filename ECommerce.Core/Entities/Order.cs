@@ -43,6 +43,11 @@ namespace ECommerce.Core.Entities
 
         [Display(Name = "Sipariş Durumu ")]
 
+
+        public Language Language { get; set; }
+
+        public int LanguageId { get; set; } = 7;
+
         public EnumOrderState OrderState { get; set; }
 
 

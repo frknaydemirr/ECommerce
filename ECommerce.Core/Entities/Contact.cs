@@ -24,5 +24,9 @@ namespace ECommerce.Core.Entities
 
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
+
+        public Language Language { get; set; }
+
+        public int LanguageId { get; set; } = 7;
     }
 }

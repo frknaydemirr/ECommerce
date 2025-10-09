@@ -30,6 +30,11 @@ namespace ECommerce.Core.Entities
 
         [Display(Name = "Birim Fİyatı")]
 
+
+        public Language Language { get; set; }
+
+        public int LanguageId { get; set; } = 7;
+
         public decimal UnitPrice { get; set; }
     }
 }

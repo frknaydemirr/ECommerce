@@ -36,5 +36,7 @@ namespace ECommerce.Core.Entities
         public Guid? UserGuid { get; set; } = Guid.NewGuid();
 
         public List<Address?> Address { get; set; } = new List<Address?>();
+
+
     }
 }

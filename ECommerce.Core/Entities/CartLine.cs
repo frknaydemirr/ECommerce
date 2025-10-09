@@ -9,5 +9,9 @@
         public Product  Product { get; set; }
 
         public int Quantity { get; set; }
+
+        public Language Language { get; set; }
+
+        public int LanguageId { get; set; } = 7;
     }
 }

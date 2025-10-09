@@ -1,79 +1,76 @@
-﻿@model LoginViewModel
-@{
-    ViewData["Title"] = "Giriş";
-    Layout = "_AccountLayout";
-}
-<h1>Giriş</h1>
-<style>
-    .form-signin {
-        width: 100%;
-        max-width: 330px;
-        padding: 15px;
-        margin: auto;
-    }
+﻿
+<partial name="_Header" />
+<section class="shop login section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 mx-auto">
+				<div class="login-form">
+					<h2>Welcome To Smartshop</h2>
+					<p>Login with email &amp; password</p>
+					<!-- Form -->
+					<form class="form" method="post" action="#">
+						<div class="row">
+							<div class="col-12">
+								<div class="form-group">
+									<label>Email or Phone Number<span>*</span></label>
+									<input type="email" name="email" placeholder="example@mail.com" required="required">
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="form-group">
+									<label>Password<span>*</span></label>
+									<input type="password" name="password" placeholder="********" required="required">
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="d-flex justify-content-between">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="remember">
+										<label class="form-check-label" for="remember">
+											Remember Me
+										</label>
+									</div>
+									<a href="#" class="lost-pass">Forgot Password?</a>
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="form-group login-btn">
+									<button class="btn" type="submit">Login</button>
+								</div>
+							</div>
+							<div class="login-divider">or</div>
+							<div class="d-flex social-login">
+								<a class="btn f-btn" type="submit"> <i class="fab fa-facebook-f"></i> Facebook</a>
+								<a class="btn g-btn" type="submit"> <i class="fab fa-google"></i> Google</a>
+							</div>
+							<p>Don't have an account? <a href="register.html">Register.</a></p>
+						</div>
+					</form>
+					<!--/ End Form -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-    .form-signin .checkbox {
-        font-weight: 400;
-    }
-
-    .form-signin .form-floating:focus-within {
-        z-index: 2;
-    }
-
-    .form-signin input[type="email"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    .form-signin input[type="password"] {
-        margin-bottom: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
-</style>
-
-<main class="form-signin w-100 m-auto shadow rounded my-5">
-    <form asp-action="SignIn">
-        <h1 class="h3 mb-3 fw-normal">Üye Girişi</h1>
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-floating">
-            <input asp-for="Email" class="form-control" id="floatingInput" placeholder="name@example.com" />
-            <label for="floatingInput">Email</label>
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-
-        <div class="form-floating">
-            <input type="password" asp-for="Password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Şifre</label>
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-
-        <div class="form-check text-start my-3">
-            <input asp-for="RememberMe" class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                Beni Hatırla
-            </label>
-        </div>
-        <input type="hidden" asp-for="ReturnUrl" value="@Context.Request.Query["ReturnUrl"]"/>
-        @* en son kullanıcı nerede kaldırysa oraya yönlendiriyor *@
-
-        <button type="submit" class="btn btn-primary w-100 py-2">
-            Giriş
-        </button>
-    </form>
-    <div class="row">
-        <div class="col-12 my-3">
-            <a href="/Account/SignUp" class="btn btn-info w-100 py-2">Üye Ol</a>
-        </div>
-
-        <div class="col-12">
-            <a href="/Account/PasswordRenew" class="btn btn-warning w-100 py-2">Şifremi Unuttum</a>
-        </div>
-    </div>
-   
-</main>
-<hr />
-<p class="alert alert-light alert-dismissible fade show">
-    Sipariş Oluşturmak, Kampanyalardan yararlanmak, Siparişinizi takip etmek için lütfen sisteme giriş yapın
-</p>
+<section class="shop-newsletter py-5">
+	<div class="container">
+		<div class="inner-top">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 col-12">
+					<!-- Start Newsletter Inner -->
+					<div class="inner">
+						<h4>Newsletter</h4>
+						<p> Subscribe to our newsletter and get <span>30%</span> off your first purchase</p>
+						<form action="#" method="get" class="newsletter-inner">
+							<input name="email" placeholder="Your email address" required="" type="email">
+							<button class="btn">Subscribe <i class="fal fa-paper-plane"></i></button>
+						</form>
+					</div>
+					<!-- End Newsletter Inner -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<partial name="_Footer" />

@@ -17,5 +17,10 @@ namespace ECommerce.Core.Entities
         [Display(Name = "Kayıt Tarihi"), ScaffoldColumn(false)]
 
         public DateTime CreateDate { get; set; } =DateTime.Now;
+
+
+        public Language Language { get; set; }
+
+        public int LanguageId { get; set; } = 7;
     }
 }

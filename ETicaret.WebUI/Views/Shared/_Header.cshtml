@@ -156,7 +156,9 @@
 									<div class="nav-inner">
 										<ul class="nav main-menu menu navbar-nav">
 											<li class="active">
-												<a href="#">Anasayfa<i class="ti-angle-down"></i></a>
+												<a asp-controller="Home" asp-action="Index">
+													Anasayfa <i class="ti-angle-down"></i>
+												</a>
 											</li>
 											<li>
 												<a href="#">Kullanıcı Hesabı | Hesabım<i class="ti-angle-down"></i></a>
@@ -188,19 +190,26 @@
 											<li>
 												<a href="#">Sayfalar<i class="ti-angle-down"></i></a>
 												<ul class="dropdown">
-													<li><a href="about-us.html">Hakkımızda</a></li>
-													<li><a href="team.html">Team</a></li>
-													<li><a href="login.html">Giriş Yap</a></li>
-													<li><a href="register.html">Üye Ol</a></li>
-													<li><a href="forgot-password.html">Şifremi Unuttum</a></li>
-													<li><a href="term-condition.html">Gizlilik & Koşullar</a></li>
-												</ul>
-											</li>
-											<li>
-												<a href="#">Blog<i class="ti-angle-down"></i></a>
-												<ul class="dropdown">
-													<li><a href="blog-grid-sidebar.html">Blog & Blog Detayları</a></li>
-                                                    
+													<li class="active">
+														<a asp-controller="Account" asp-action="SignIn">
+															Giriş Yap
+														</a>
+													</li>
+													<li class="active">
+														<a asp-controller="Account" asp-action="SignUp">
+															Üye Ol
+														</a>
+													</li>
+													<li class="active">
+														<a asp-controller="Account" asp-action="PasswordRenew">
+															Şifre Yenil | Şifremi Unuttum
+														</a>
+													</li>
+													<li class="active">
+														<a asp-controller="Account" asp-action="TermConditions">
+															Gizlilik & Koşullar Hakkında
+														</a>
+													</li>
 												</ul>
 											</li>
 											<li><a asp-controller="Home" asp-action="ContactUs">İletişim</a></li>

@@ -17,6 +17,11 @@ namespace ECommerce.Core.Entities
         public Product? Product { get; set; }
 
 
+        public Language Language { get; set; }
+
+        public int LanguageId { get; set; } = 7;
+
+
 
     }
 }

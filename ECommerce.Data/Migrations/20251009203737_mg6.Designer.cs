@@ -4,6 +4,7 @@ using ECommerce.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20251009203737_mg6")]
+    partial class mg6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,39 +79,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("Addresses", (string)null);
-                });
-
-            modelBuilder.Entity("ECommerce.Core.Entities.AdminNavbar", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Turn")
-                        .HasColumnType("int");
-
-                    b.Property<string>("URL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("AdminNavbar", (string)null);
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.AppUser", b =>
@@ -161,7 +132,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUsers", (string)null);
+                    b.ToTable("AppUsers");
 
                     b.HasData(
                         new
@@ -215,7 +186,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("Brands", (string)null);
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.Category", b =>
@@ -260,7 +231,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -323,7 +294,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("CompanyInfos", (string)null);
+                    b.ToTable("CompanyInfos");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.Contact", b =>
@@ -367,7 +338,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("Contacts", (string)null);
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.Language", b =>
@@ -394,61 +365,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Languages", (string)null);
-                });
-
-            modelBuilder.Entity("ECommerce.Core.Entities.NavbarMain", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MetaDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MetaKeywords")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MetaTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SeoURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Turn")
-                        .HasColumnType("int");
-
-                    b.Property<string>("URL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isMainMenu")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isTopMenu")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("NavbarMain", (string)null);
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.News", b =>
@@ -484,7 +401,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("News", (string)null);
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.Order", b =>
@@ -536,7 +453,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.OrderLine", b =>
@@ -570,7 +487,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderLines", (string)null);
+                    b.ToTable("OrderLines");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.Product", b =>
@@ -638,7 +555,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.ProductImage", b =>
@@ -669,7 +586,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages", (string)null);
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.Resource", b =>
@@ -699,7 +616,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("Resources", (string)null);
+                    b.ToTable("Resources");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.Slider", b =>
@@ -733,7 +650,7 @@ namespace ECommerce.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("Sliders", (string)null);
+                    b.ToTable("Sliders");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.Address", b =>
@@ -749,17 +666,6 @@ namespace ECommerce.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("AppUser");
-
-                    b.Navigation("Language");
-                });
-
-            modelBuilder.Entity("ECommerce.Core.Entities.AdminNavbar", b =>
-                {
-                    b.HasOne("ECommerce.Core.Entities.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Language");
                 });
@@ -798,17 +704,6 @@ namespace ECommerce.Data.Migrations
                 });
 
             modelBuilder.Entity("ECommerce.Core.Entities.Contact", b =>
-                {
-                    b.HasOne("ECommerce.Core.Entities.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Language");
-                });
-
-            modelBuilder.Entity("ECommerce.Core.Entities.NavbarMain", b =>
                 {
                     b.HasOne("ECommerce.Core.Entities.Language", "Language")
                         .WithMany()
