@@ -1,115 +1,72 @@
-﻿<section class="hero-slider mt-1 py-0">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 pt-4">
-				<div class="bg-grey home-2-slider">
-					<div class="main-hero-slider owl-carousel owl-theme">
-						<!-- Single Slider -->
-						<div class="item">
-							<div class="single-slider item">
-								<div class="row">
-									<div class="col-lg-8 col-md-8 my-auto">
-										<div class="text-inner">
-											<div class="hero-text p-0">
-												<h1><span>UP TO 50% OFF </span>For Your First Buy</h1>
-												<p>There are many variations of passages of lorem ipsum <br> available but the majority have suffered alteration in <br> some form  by injected humour.</p>
-												<div class="button">
-													<a href="#" class="btn">Shop Now!</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 my-auto">
-										<img src="~/smartshop/assets/img/slider/slider.png" class="w-100" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--/ End Single Slider -->
-						<!-- Single Slider -->
-						<div class="item">
-							<div class="single-slider item">
-								<div class="row">
-									<div class="col-lg-8 col-md-8 my-auto">
-										<div class="text-inner">
-											<div class="hero-text  p-0">
-												<h1><span>UP TO 50% OFF </span>For Your First Buy</h1>
-												<p>There are many variations of passages of lorem ipsum <br> available but the majority have suffered alteration in <br> some form  by injected humour.</p>
-												<div class="button">
-													<a href="#" class="btn">Shop Now!</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 my-auto">
-										<img <img src="~/smartshop/assets/img/slider/slider.png" class="w-100" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--/ End Single Slider -->
-						<!-- Single Slider -->
-						<div class="item">
-							<div class="single-slider item">
-								<div class="row">
-									<div class="col-lg-8 col-md-8 my-auto">
-										<div class="text-inner">
-											<div class="hero-text  p-0">
-												<h1><span>UP TO 50% OFF </span>For Your First Buy</h1>
-												<p>There are many variations of passages of lorem ipsum <br> available but the majority have suffered alteration in <br> some form  by injected humour.</p>
-												<div class="button">
-													<a href="#" class="btn">Shop Now!</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 my-auto">
-										<img <img src="~/smartshop/assets/img/slider/slider.png" class="w-100" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--/ End Single Slider -->
+﻿@model ETicaret.WebUI.Models.HomePageViewModel
 
-					</div>
-				</div>
-			</div>
+<section class="hero-slider mt-1 py-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 pt-4">
+                <div class="bg-grey home-2-slider">
+                    <div class="main-hero-slider owl-carousel owl-theme">
 
-			<div class="col-lg-4 pt-4">
-				<!-- Start Small Banner  -->
-				<div class="small-banner pt-0">
-					<div class="row">
-						<!-- Single Banner  -->
-						<div class="col-12">
-							<div class="single-banner">
-								<img src="~/smartshop/assets/img/mini-banner1.jpg" alt="#">
-								<div class="content">
-									<p>Hot Collections</p>
-									<h3>Best travel sale<br> collection</h3>
-									<a href="#">Discover Now</a>
-								</div>
-							</div>
-						</div>
-						<!-- /End Single Banner  -->
-						<!-- Single Banner  -->
-						<div class="col-12 mt-4">
-							<div class="single-banner">
-								<img src="~/smartshop/assets/img/mini-banner2.jpg" alt="#">
-								<div class="content">
-									<p>Bag Collections</p>
-									<h3>Awesome Bag <br> Collecton</h3>
-									<a href="#">Shop Now</a>
-								</div>
-							</div>
-						</div>
-						<!-- /End Single Banner  -->
-					</div>
-				</div>
-				<!-- End Small Banner -->
-			</div>
+                        @foreach (var item in Model.Sliders)
+                        {
+                            <!-- Single Slider -->
+                            <div class="item">
+                                <div class="single-slider item">
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-8 my-auto">
+                                            <div class="text-inner">
+                                                <div class="hero-text p-0">
+                                                    <h1>@item.Title</h1>
+                                                    <p>@item.Description</p>
+                                                    <div class="button">
+                                                        <a href="#" class="btn">Shop Now!</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 my-auto">
+                                            <img src="~/Img/Slider/@item.Image" class="w-100" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
 
-		</div>
+                    </div>
+                </div>
+            </div>
 
-	</div>
+            <div class="col-lg-4 pt-4">
+                <!-- Start Small Banner  -->
+                <div class="small-banner pt-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="single-banner">
+                                <img src="~/smartshop/assets/img/mini-banner1.jpg" alt="#">
+                                <div class="content">
+                                    <p>Hot Collections</p>
+                                    <h3>Best travel sale<br> collection</h3>
+                                    <a href="#">Discover Now</a>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-12 mt-4">
+                            <div class="single-banner">
+                                <img src="~/smartshop/assets/img/mini-banner2.jpg" alt="#">
+                                <div class="content">
+                                    <p>Bag Collections</p>
+                                    <h3>Awesome Bag <br> Collection</h3>
+                                    <a href="#">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Small Banner -->
+            </div>
+
+        </div>
+    </div>
 </section>

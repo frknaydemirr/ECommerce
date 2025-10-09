@@ -42,5 +42,11 @@ namespace ECommerce.Core.Entities
 
         public List<ProductImage> ProductImages { get; set; }
 
+        [Display(Name = "İndirimde mi?")]
+        public bool IsSale { get; set; } = false;
+
+        [Display(Name = "İndirimli Fiyat")]
+        public decimal? DiscountPrice { get; set; }
+
     }
 }

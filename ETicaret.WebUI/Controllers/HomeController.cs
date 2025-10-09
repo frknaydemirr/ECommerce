@@ -51,8 +51,9 @@ namespace ETicaret.WebUI.Controllers
         }
 
 
-        public IActionResult ContactUs()
+        public async Task<IActionResult> ContactUs()
         {
+           
             return View();
         }
         [HttpPost]
