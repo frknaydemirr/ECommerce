@@ -163,7 +163,10 @@
 											<li>
 												<a href="#">Kullanıcı Hesabı | Hesabım<i class="ti-angle-down"></i></a>
 												<ul class="dropdown">
-													<li><a href="order-list.html">Siparişlerim</a></li>
+													<li><a href="shop-grid.html">İlgilendiğiniz Ürünler</a></li>
+													<a asp-controller="Orders" asp-action="Index">
+														Siparişlerim <i class="ti-angle-down"></i>
+													</a>
 													<li><a href="order-detail.html">Sipariş Detaylarım</a></li>
 													<li><a href="add-address.html">Adres Ekle</a></li>
 													<li><a href="address-list.html">Adres Listesi</a></li>
@@ -179,10 +182,11 @@
 												<a href="#">Sepet Listesi<i class="ti-angle-down"></i><span class="new">New</span></a>
 												<ul class="dropdown">
 													<li><a href="shop-grid.html">İlgilendiğiniz Ürünler</a></li>
-													<li><a href="shop-list.html">Shop List</a></li>
 													<li><a href="shop-single.html">Shop Single</a></li>
 													<li><a href="shop-search.html">Shop Search</a></li>
-													<li><a href="cart.html">Cart</a></li>
+													<a asp-controller="Cart" asp-action="Index">
+														Sepetim <i class="ti-angle-down"></i>
+													</a>
 													<li><a href="checkout.html">Checkout</a></li>
 													<li><a href="compare.html">Shop Compare</a></li>
 												</ul>

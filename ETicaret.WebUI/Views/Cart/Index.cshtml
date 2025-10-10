@@ -1,136 +1,179 @@
-﻿@using Microsoft.AspNetCore.Identity
-@model CartViewModel
-@{
+﻿
+<partial name="_Header" />
 
-    ViewBag.Title = "Sepetim";
+<div class="shopping-cart section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping-cart-single">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <img src="assets/img/products/p20.png" alt="">
+                        </div>
+                        <div class="col-lg-10 my-auto">
+                            <div class="d-flex justify-content-between cart-title">
+                                <h6>Modern Electric Bike</h6>
+                                <a href="#"><i class="fal fa-times"></i></a>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <div class="cart-price my-auto">
+                                    $250.00 x 1 <b>$250.00</b>
+                                </div>
+                                <div class="row g-0 cart-qty">
+                                    <div class="col-auto">
+                                        <button type="submit" class="minus cat-qty-btn"> <i class="far fa-minus "></i></button>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" name="quant[1]" class="input-number" readonly="" data-min="1" data-max="1000" value="1">
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="plus cat-qty-btn"><i class="far fa-plus"></i></button>
+                                    </div>
+                                </div>
 
-}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shopping-cart-single">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <img src="assets/img/products/p20.png" alt="">
+                        </div>
+                        <div class="col-lg-10 my-auto">
+                            <div class="d-flex justify-content-between cart-title">
+                                <h6>Modern Electric Bike</h6>
+                                <a href="#"><i class="fal fa-times"></i></a>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <div class="cart-price my-auto">
+                                    $250.00 x 1 <b>$250.00</b>
+                                </div>
+                                <div class="row g-0 cart-qty">
+                                    <div class="col-auto">
+                                        <button type="submit" class="minus cat-qty-btn"> <i class="far fa-minus "></i></button>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" name="quant[1]" class="input-number" readonly="" data-min="1" data-max="1000" value="1">
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="plus cat-qty-btn"><i class="far fa-plus"></i></button>
+                                    </div>
+                                </div>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shopping-cart-single">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <img src="assets/img/products/p20.png" alt="">
+                        </div>
+                        <div class="col-lg-10 my-auto">
+                            <div class="d-flex justify-content-between cart-title">
+                                <h6>Modern Electric Bike</h6>
+                                <a href="#"><i class="fal fa-times"></i></a>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <div class="cart-price my-auto">
+                                    $250.00 x 1 <b>$250.00</b>
+                                </div>
+                                <div class="row g-0 cart-qty">
+                                    <div class="col-auto">
+                                        <button type="submit" class="minus cat-qty-btn"> <i class="far fa-minus "></i></button>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" name="quant[1]" class="input-number" readonly="" data-min="1" data-max="1000" value="1">
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="plus cat-qty-btn"><i class="far fa-plus"></i></button>
+                                    </div>
+                                </div>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shopping-cart-single">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <img src="assets/img/products/p20.png" alt="">
+                        </div>
+                        <div class="col-lg-10 my-auto">
+                            <div class="d-flex justify-content-between cart-title">
+                                <h6>Modern Electric Bike</h6>
+                                <a href="#"><i class="fal fa-times"></i></a>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <div class="cart-price my-auto">
+                                    $250.00 x 1 <b>$250.00</b>
+                                </div>
+                                <div class="row g-0 cart-qty">
+                                    <div class="col-auto">
+                                        <button type="submit" class="minus cat-qty-btn"> <i class="far fa-minus "></i></button>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" name="quant[1]" class="input-number" readonly="" data-min="1" data-max="1000" value="1">
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="plus cat-qty-btn"><i class="far fa-plus"></i></button>
+                                    </div>
+                                </div>
 
-<section class="container my-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <div class="text-center">
-        <h1 class="display-4">
-            Sepetim
-        </h1>
+            <div class="col-lg-4">
+                <div class="coupon-area">
+                    <form action="#">
+                        <input type="text" placeholder="Apply your coupon">
+                        <button class="coupon-apply-btn">Apply Now</button>
+                    </form>
+                </div>
+
+                <!-- Total Amount -->
+                <div class="cart-total-amount">
+                    <ul>
+                        <li>Cart Subtotal<span>$250.00</span></li>
+                        <li>Shipping<span>Free</span></li>
+                        <li>Discount<span>$10.00</span></li>
+                        <li>Tax<span>$20.00</span></li>
+                        <li class="last">You Pay<span>$260.00</span></li>
+                    </ul>
+                    <div class="checkout-section">
+                        <a href="#" class="btn checkout-btn">Checkout</a>
+                        <a href="#" class="btn">Continue shopping</a>
+                    </div>
+                </div>
+
+            </div>
+            <!--/ End Total Amount -->
+        </div>
     </div>
-    <div class="row">  @if (Model.cartLines.Any())
-                {
-        <div class="col-md-8">
-            <div class="table-responsive">
-              
-                    <table class="table table-hover table-striped">
-                        <tr>
-                            <th></th>
-                            <th>Ürün</th>
-                            <th>Fiyat</th>
-                            <th>Miktar</th>
-                            <th>Toplam</th>
-                            <th></th>
-                        </tr>
-                        <tbody>
-                            @foreach (var item in Model.cartLines)
-                            {
-                                <tr>
-                                    <td>
-                                        <img src="/Img/Products/@item.Product.Image" height="37" />
-                                    </td>
-                                    <td>
-                                        <a class="nav-link text-dark" href="/Products/Details/@item.Id">
-                                            @item.Product.Name
-                                        </a>
-                                    </td>
-                                    <td>
-                                        @item.Product.Price.ToString("c")
-                                    </td>
-                                    <td>
-                                        @item.Quantity
-                                    </td>
-                                    <td>
-                                        @((item.Quantity * item.Product.Price).ToString("c"))
-                                    </td>
-                                    <td>
-                                        <form asp-action="Remove" asp-controller="Cart">
-                                            <input type="hidden" name="ProductId" value="@item.Product.Id" />
-                                            <button class="btn btn-sm btn-danger" type="submit">
-                                                <i class="bi bi-x-lg"></i>
-                                            </button>
+</div>
 
-                                        </form>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                
-              
-            </div>
-
-        </div>
-        <div class="col-md-4">
-            <div>
-                <h4>Sepet Toplamı</h4>
-            </div>
-            <table class="table">
-                <tr>
-                    <td>Ara Toplam</td>
-                    <td>@Model.TotalPrice.ToString("c")</td>
-                </tr>
-                <tr>
-                    <td>Kargo Fiyatı</td>
-                    <td>
-                        @(Model.TotalPrice > 999 ? "Ücretsiz" :
-                                                (Model.cartLines.Any() ? "99₺" : "0₺"))
-                    </td>
-                </tr>
-                <tr>
-                    <th>Sipariş Toplamı</th>
-                    <td>
-                        @{
-                            decimal shipping = (Model.TotalPrice > 999 || !Model.cartLines.Any()) ? 0 : 99;
-                            decimal orderTotal = Model.TotalPrice + shipping;
-                        }
-                        @orderTotal.ToString("c")
-                    </td>
-                </tr>
-            </table>
-                <div class="text-center">
-                    <a href="/" class="btn btn-danger">
-                        <i class="bi bi-cart me-1"></i>
-                        Alışverişe Devam Et
-                    </a>
-
-                    <a href="/Cart/CheckOut" class="btn btn-success">
-                        <i class="bi bi-credit-card me-1"></i>
-                        Satın Al
-                    </a>
-                </div>
-
-                @* Kullanıcı giriş yaptıysa *@
-                @if (Model.CurrentUser != null)
-                {
-                    <div class="mt-3 p-3 bg-light border rounded">
-                        <p class="mb-1"><strong>Ad Soyad:</strong> @Model.CurrentUser.Name @Model.CurrentUser.SurName</p>
-                        <p class="mb-1"><strong>Email:</strong> @Model.CurrentUser.Email</p>
-                        @if (!string.IsNullOrEmpty(Model.CurrentUser.Phone))
-                        {
-                            <p class="mb-0"><strong>Telefon:</strong> @Model.CurrentUser.Phone</p>
-                        }
+<section class="shop-newsletter py-5">
+    <div class="container">
+        <div class="inner-top">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 col-12">
+                    <!-- Start Newsletter Inner -->
+                    <div class="inner">
+                        <h4>Newsletter</h4>
+                        <p> Subscribe to our newsletter and get <span>30%</span> off your first purchase</p>
+                        <form action="#" method="get" class="newsletter-inner">
+                            <input name="email" placeholder="Your email address" required="" type="email">
+                            <button class="btn">Subscribe <i class="fal fa-paper-plane"></i></button>
+                        </form>
                     </div>
-                }
-        </div>
-        }
-        else
-    {
-                <div class="container my-5">
-                    <div class="alert alert-warning">
-
-
-                        <h3>Sepetinizde Ürün bulunmamaktadır!</h3>
-                    </div>
-
+                    <!-- End Newsletter Inner -->
                 </div>
-    }
+            </div>
+        </div>
     </div>
 </section>
+ <partial name="_Footer" />
